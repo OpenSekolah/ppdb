@@ -88,3 +88,9 @@ const submit = () => {
         </form>
     </AuthenticationCard>
 </template>
+
+<style>
+    body {
+        padding-top: 0px !important;
+    }
+</style>

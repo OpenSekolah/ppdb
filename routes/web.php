@@ -7,6 +7,7 @@ use Inertia\Inertia;
 
 use App\Http\Controllers\{
     Home\WelcomeController,
+    Home\RegisterController,
 };
 
 /*
@@ -30,3 +31,5 @@ use App\Http\Controllers\{
 // });
 
 Route::get('/', WelcomeController::class)->name('home.welcome');
+Route::post('register_form', [RegisterController::class, 'store'])->name('register_form.store');
+Route::get('register_form/{user}', [RegisterController::class, 'show'])->name('register_form.show');

@@ -5,7 +5,7 @@ namespace App\Http\Requests\Home;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class VoterRequest extends FormRequest
+class RegisterRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,10 +25,42 @@ class VoterRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'token' => [
-                'required:5',
-                'min:5',
-                'max:100',
+            'name' => [
+                'required',
+                'max:255',
+            ],
+            'email' => [
+                'required',
+                'max:191',
+            ],
+            'place_of_birth' => [
+                'required',
+                'max:200',
+            ],
+            'date_of_birth' => [
+                'required',
+                'date',
+            ],
+            'address' => [
+                'required',
+                'max:65535',
+            ],
+            'from_school' => [
+                'required',
+                'max:255',
+            ],
+            'competence_first' => [
+                'required',
+                Rule::exists('skill_competences', 'id'),
+            ],
+            'competence_second' => [
+                'required',
+                Rule::exists('skill_competences', 'id'),
+            ],
+            'password' => [
+                'required',
+                'confirmed',
+                'min:8',
             ],
         ];
 
@@ -47,7 +79,16 @@ class VoterRequest extends FormRequest
     public function attributes()
     {
         $attributes = [
-            'token' => 'Token',
+            'name' => 'Nama Lengkap',
+            'email' => 'NIDN',
+            'place_of_birth' => 'Tempat Lahir',
+            'date_of_birth' => 'Tanggal Lahir',
+            'address' => 'Alamat',
+            'from_school' => 'Asal Sekolah',
+            'competence_first' => 'Jurusan 1',
+            'competence_second' => 'Jurusan 2',
+            'password' => 'Kata Sandi',
+            'password_confirmation' => 'Konfirmasi Sandi',
         ];
 
         return $attributes;

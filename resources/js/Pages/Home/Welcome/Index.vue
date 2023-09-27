@@ -26,6 +26,7 @@ const props = defineProps({
 });
 
 const form = useForm({
+    _method: "POST",
     name: '',
     email: '',
     place_of_birth: '',
@@ -39,9 +40,17 @@ const form = useForm({
     terms: false,
 });
 
+const createModel = () => {
+    form.post(route('register_form.store'), {
+        preserveScroll: true,
+        onSuccess: () => {
+            
+        },
+    });
+};
+
 onMounted(() => {
     background_image.value = `${usePage().props?.base_url}images/bg.jpg`;
-    console.log(background_image.value);
 });
 
 </script>
@@ -99,11 +108,11 @@ onMounted(() => {
             </div>
         </div>
 
-        <section class="text-gray-900 body-font bg-gray-300" >
+        <section class="text-blue-700 body-font bg-gray-300" >
             <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
                 <div class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
-                    <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Formulir Pendaftaran</h1>
-                    <form class="w-full">
+                    <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-blue-700">Formulir Pendaftaran</h1>
+                    <form class="w-full" @submit.prevent="createModel">
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
                             <div class="mt-4">
                                 <InputLabel for="name" value="Nama Lengkap" />
@@ -219,7 +228,7 @@ onMounted(() => {
                         </div>
 
                         <div class="flex items-center justify-end mt-4">
-                            <Link :href="route('login')" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            <Link :href="route('login')" class="underline text-sm text-gray-600 hover:text-blue-700 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                 Sudah terdaftar?
                             </Link>
 
@@ -238,19 +247,18 @@ onMounted(() => {
         <section class="text-gray-600 body-font">
             <div class="container px-5 py-24 mx-auto">
                 <div class="flex flex-wrap w-full mb-20 flex-col items-center text-center">
-                    <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">Konsentrasi Keahlian</h1>
+                    <h1 class="sm:text-3xl text-2xl font-medium title-font mb-2 text-blue-700">Konsentrasi Keahlian</h1>
                     <p class="lg:w-1/2 w-full leading-relaxed text-gray-500">Konsentrasi Keahlian yang diselenggarakan di SMK ABB</p>
                 </div>
 
                 <div class="flex flex-wrap -m-4">
                     <div class="xl:w-1/3 md:w-1/2 p-4" v-for="(item, index) in attr?.competence" :key="index">
                         <div class="border border-gray-200 p-6 rounded-lg">
-                            <h2 class="text-lg text-gray-900 font-medium title-font mb-2">{{ item?.name }}</h2>
+                            <h2 class="text-lg text-blue-700 font-medium title-font mb-2">{{ item?.name }}</h2>
                             <p class="leading-relaxed text-base">{{ item?.desc }}</p>
                         </div>
                     </div>
                 </div>
-                <button class="flex mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Button</button>
             </div>
             </section>
     </HomeLayout>

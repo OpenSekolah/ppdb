@@ -19,6 +19,7 @@
         "vue": "^3.2.31"
     },
     "dependencies": {
+        "@vuepic/vue-datepicker": "^6.1.0",
         "chart.js": "^4.0.0",
         "flowbite": "^1.7.0",
         "flowbite-vue": "^0.0.16",

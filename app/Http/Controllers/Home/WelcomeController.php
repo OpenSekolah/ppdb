@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Vote;
+use App\Models\SkillCompetence;
 use Inertia\Inertia;
 
 class WelcomeController extends Controller
@@ -19,9 +19,12 @@ class WelcomeController extends Controller
 
     public function __invoke(Request $request)
     {
+        $competence = SkillCompetence::paginateData('all');
         return Inertia::render($this->path_render . 'Index', [
-            'attributes' => [
-                'welcome' => 'welcome'
+            'attr' => [
+                'welcome' => 'welcome',
+                'competence' => $competence['data'] ?? [],
+                'competences' => generalSelectFormat($competence['data']),
             ]
         ]);
     }

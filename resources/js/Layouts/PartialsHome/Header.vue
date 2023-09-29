@@ -1,8 +1,16 @@
 <script setup>
 import HomeNavLink from '@/Components/HomeNavLink.vue';
+import { router } from '@inertiajs/vue3';
+import Dropdown from '@/Components/Dropdown.vue';
+import DropdownLink from '@/Components/DropdownLink.vue';
+
 defineProps({
     title: String,
 });
+
+const logout = () => {
+    router.post(route('logout'));
+};
 </script>
 
 <template>
@@ -20,12 +28,29 @@ defineProps({
                             Beranda
                         </HomeNavLink>
                     </li>
-                    <li>
-                        <HomeNavLink :href="route('login')" :active="route().current('login')">
-                            Login
-                        </HomeNavLink>
-                    </li>
-
+                    <template v-if="!$page.props?.auth?.user?.name">
+                        <li>
+                            <HomeNavLink :href="route('login')" :active="route().current('login')">
+                                Masuk
+                            </HomeNavLink>
+                        </li>
+                    </template>
+                    <template v-if="$page.props.auth.user">
+                        <li>
+                            <HomeNavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                                Dasbor
+                            </HomeNavLink>
+                        </li>
+                        <li>
+                            <HomeNavLink href="#" :active="route().current('login')">
+                                <form @submit.prevent="logout">
+                                    <button type="submit">
+                                        Log Out
+                                    </button>
+                                </form>
+                            </HomeNavLink>
+                        </li>
+                    </template>
                     <label for="check" class="close-menu">X</label>
                 </span>
 

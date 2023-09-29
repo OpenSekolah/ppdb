@@ -8,6 +8,8 @@ use Inertia\Inertia;
 use App\Http\Controllers\{
     Home\WelcomeController,
     Home\RegisterController,
+    Home\DashboardController,
+    Home\RegisterPdfController,
 };
 
 /*
@@ -33,3 +35,12 @@ use App\Http\Controllers\{
 Route::get('/', WelcomeController::class)->name('home.welcome');
 Route::post('register_form', [RegisterController::class, 'store'])->name('register_form.store');
 Route::get('register_form/{user}', [RegisterController::class, 'show'])->name('register_form.show');
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', DashboardController::class)->name('dashboard');
+    Route::get('/register/pdf/{user}', RegisterPdfController::class)->name('register.pdf');
+});

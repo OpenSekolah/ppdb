@@ -69,9 +69,9 @@ onMounted(() => {
 
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink :href="route('admin.votes.index')" :active="route().current('admin.votes.*') || route().current('admin.candidates.*') || route().current('admin.voters.*') || route().current('admin.charts')">
+                                <!-- <NavLink :href="" :active="">
                                     Vote
-                                </NavLink>
+                                </NavLink> -->
                             </div>
                         </div>
 
@@ -212,9 +212,9 @@ onMounted(() => {
                 <!-- Responsive Navigation Menu -->
                 <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}" class="sm:hidden">
                     <div class="pt-2 pb-3 space-y-1">
-                        <ResponsiveNavLink :href="route('admin.votes.index')" :active="route().current('admin.votes.*') || route().current('admin.candidates.*') || route().current('admin.voters.*') || route().current('admin.charts')">
+                        <!-- <ResponsiveNavLink :href="" :active="">
                             Vote
-                        </ResponsiveNavLink>
+                        </ResponsiveNavLink> -->
                     </div>
 
                     <!-- Responsive Settings Options -->

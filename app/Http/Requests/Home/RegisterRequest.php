@@ -32,6 +32,7 @@ class RegisterRequest extends FormRequest
             'email' => [
                 'required',
                 'max:191',
+                'unique:users'
             ],
             'place_of_birth' => [
                 'required',
@@ -55,6 +56,7 @@ class RegisterRequest extends FormRequest
             ],
             'competence_second' => [
                 'required',
+                'different:competence_first',
                 Rule::exists('skill_competences', 'id'),
             ],
             'password' => [

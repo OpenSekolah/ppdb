@@ -16,8 +16,10 @@ return new class extends Migration
         Schema::create('register_forms', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->unsignedBigInteger('user_id');
+            $table->bigInteger('sequence_number');
+            $table->string('register_number', 255);
             $table->string('name', 255);
-            $table->string('nidn', 200);
+            $table->string('nidn', 200)->unique();
             $table->string('place_of_birth', 200);
             $table->date('date_of_birth');
             $table->text('address');

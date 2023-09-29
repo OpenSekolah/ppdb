@@ -4,12 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\SerialNumberFormatter;
 use App\Traits\Uuid;
 use Carbon\Carbon;
 
 class RegisterForm extends Model
 {
-    use HasFactory, Uuid;
+    use HasFactory, Uuid, SerialNumberFormatter;
 
 	/**
      * The attributes that are mass assignable.
@@ -18,6 +19,8 @@ class RegisterForm extends Model
      */
     protected $fillable = [
         'user_id',
+        'sequence_number',
+        'register_number',
         'name',
         'nidn',
         'place_of_birth',
@@ -47,10 +50,19 @@ class RegisterForm extends Model
     protected $appends = [
 		'formattedCreatedAt',
         'formattedUpdatedAt',
+        'dateOfBirthAt',
     ];
-
+    
     public function user() {
-        return $this->hasOne(User::class, 'user_id', 'id');
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
+    
+    public function competencefirst() {
+        return $this->hasOne(SkillCompetence::class, 'id', 'competence_first');
+    }
+
+    public function competencesecond() {
+        return $this->hasOne(SkillCompetence::class, 'id', 'competence_second');
     }
     
 	public function getFormattedCreatedAtAttribute($value)
@@ -61,6 +73,11 @@ class RegisterForm extends Model
     public function getFormattedUpdatedAtAttribute($value)
     {
         return Carbon::parse($this->updated_at)->format('d M Y H:i:s');
+    }
+
+    public function getDateOfBirthAtAttribute($value)
+    {
+        return Carbon::parse($this->date_of_birth)->format('d M Y');
     }
 
 	public function scopeWhereIsActive($query, $search = true)

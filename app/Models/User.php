@@ -10,6 +10,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Hash;
+use PDF;
 
 class User extends Authenticatable
 {
@@ -61,7 +62,26 @@ class User extends Authenticatable
     ];
 
     public function register_form() {
-        return $this->belongsTo(RegisterForm::class, 'user_id');
+        return $this->hasOne(RegisterForm::class, 'user_id');
+    }
+
+    public function getPdf() {
+        
+        $register_form = RegisterForm::with(['competencefirst', 'competencesecond'])->where('user_id', $this->id)->first();
+        $data = [
+            'register_form' => $register_form
+        ];
+
+        $pdf = PDF::setOption(['dpi' => 150, 'defaultFont' => 'sans-serif'])
+            ->setPaper('A4', 'portrait')
+            ->setWarnings(false)
+            ->loadView('pdf.user.register', $data);	 
+
+        //return $pdf->stream("invoice-{$this->invoice_number}.pdf");
+        return response()->make($pdf->stream(), 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; filename="invoice-'.$this->invoice_number.'.pdf"',
+        ]);
     }
 
     public static function createWebApp($request) {        

@@ -16,7 +16,7 @@ class DashboardController extends Controller
 	public function __construct()
 	{
 		$this->path_render = "Managers/Dashboard/";
-		$this->title_index = $this->title_index = Lang::get('app.title_dashboard');;
+		$this->title_index = "Dashbor";
 
 		$this->breadcrumb_index = [
 			[

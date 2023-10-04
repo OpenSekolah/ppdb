@@ -203,11 +203,16 @@ onMounted(() => {
                     <slot name="header" />
                 </div>
             </header>
-
             <!-- Page Content -->
-            <main>
+            <main class="max-w-full mx-auto px-4 sm:px-6 lg:px-8 py-7">
                 <slot />
             </main>
         </div>
     </div>
 </template>
+
+<style>
+.dropdown_manager:hover .dropdown_manager-menu {
+  display: block;
+}
+</style>

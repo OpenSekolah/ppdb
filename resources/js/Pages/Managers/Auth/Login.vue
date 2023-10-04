@@ -24,7 +24,7 @@ const submit = () => {
     form.transform(data => ({
         ...data,
         remember: form.remember ? 'on' : '',
-    })).post(route('login'), {
+    })).post(route('manager.login'), {
         onFinish: () => form.reset('password'),
     });
 };
@@ -32,8 +32,8 @@ const submit = () => {
 
 <template>
     <Head title="Log in" />
-
-    <div class="flex items-center min-h-screen p-4 bg-gray-100 lg:justify-center">
+    <!-- bg-cover bg-no-repeat style="background-image: url('https://images2.alphacoders.com/130/1308322.jpeg') !important;" -->
+    <div class="flex items-center min-h-screen p-4 lg:justify-center" >
         <div
             class="flex flex-col overflow-hidden bg-white rounded-md shadow-lg max md:flex-row md:flex-1 lg:max-w-screen-md"
         >
@@ -46,15 +46,7 @@ const submit = () => {
                     </a>
                 </div>
                 <p class="mt-6 font-normal text-center text-gray-300 md:mt-0">
-                    <h1 class="text-white bold">Info Lebih Lanjut</h1>
-                    <ul class="list-disc mt-4 text-xs text-white">
-                        <li>Bapak ABC : +62XXXXXXXXXXX</li>
-                        <li>WA Center : +62XXXXXXXXXXX</li>
-                    </ul> 
-                </p>
-                <p class="flex flex-col items-center justify-center mt-10 text-center">
-                    <span>Belum punya akun?</span>
-                    <a :href="route('home.welcome')" class="underline">Daftar</a>
+                    <h1 class="text-white bold">Portal Admin</h1>
                 </p>
             </div>
 
@@ -62,7 +54,7 @@ const submit = () => {
                 <h3 class="my-4 text-2xl font-semibold text-gray-700 uppercase">Masuk</h3>
                 <form @submit.prevent="submit">
                     <div>
-                        <InputLabel for="email" value="NINS" />
+                        <InputLabel for="email" value="Email" />
                         <TextInput
                             id="email"
                             v-model="form.email"
@@ -96,19 +88,10 @@ const submit = () => {
                     </div>
 
                     <div class="flex items-center justify-end mt-4">
-                        <Link v-if="canResetPassword" :href="route('password.request')" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            Forgot your password?
-                        </Link>
-
                         <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                             Log in
                         </PrimaryButton>
                     </div>
-
-                    <ul class="list-disc mt-7 italic text-xs text-red-700">
-                        <li>Masukan Username dan password yang sudah dibuat</li>
-                        <li>Apabila belum mendapat Username dan Password silahkan hubungi panitia</li>
-                    </ul> 
                 </form>
             </div>
         </div>
@@ -118,5 +101,111 @@ const submit = () => {
 <style>
     body {
         padding-top: 0px !important;
+        background: -moz-linear-gradient(45deg, #02e1ba 0%, #26c9f2 29%, #d911f2 66%, #ffa079 100%);
+        background: -webkit-linear-gradient(45deg, #02e1ba 0%,#26c9f2 29%,#d911f2 66%,#ffa079 100%);
+        background: linear-gradient(45deg, #02e1ba 0%,#26c9f2 29%,#d911f2 66%,#ffa079 100%);
+        background-size: 400% 400%;
+        -webkit-animation: Gradient 15s ease infinite;
+        -moz-animation: Gradient 15s ease infinite;
+        animation: Gradient 15s ease infinite;
+        /*min-height: calc(100vh - 2rem);*/
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: space-evenly;
+        overflow: hidden;
+        position: relative; 
     }
+
+    body::before, 
+    body::after {
+        content: "";
+        width: 70vmax;
+        height: 70vmax;
+        position: absolute;
+        background: rgba(255, 255, 255, 0.07);
+        left: -20vmin;
+        top: -20vmin;
+        animation: morph 15s linear infinite alternate, spin 20s linear infinite;
+        z-index: 1;
+        will-change: border-radius, transform;
+        transform-origin: 55% 55%;
+        pointer-events: none; 
+    }
+        
+    body::after {
+        width: 70vmin;
+        height: 70vmin;
+        left: auto;
+        right: -10vmin;
+        top: auto;
+        bottom: 0;
+        animation: morph 10s linear infinite alternate, spin 26s linear infinite reverse;
+        transform-origin: 20% 20%; 
+    }
+
+    @-webkit-keyframes Gradient {
+        0% {
+            background-position: 0 50%
+        }
+        50% {
+            background-position: 100% 50%
+        }
+        100% {
+            background-position: 0 50%
+        }
+    }
+
+    @-moz-keyframes Gradient {
+        0% {
+            background-position: 0 50%
+        }
+        50% {
+            background-position: 100% 50%
+        }
+        100% {
+            background-position: 0 50%
+        }
+    }
+
+    @keyframes Gradient {
+        0% {
+            background-position: 0 50%
+        }
+        50% {
+            background-position: 100% 50%
+        }
+        100% {
+            background-position: 0 50%
+        }
+    }
+
+    @keyframes morph {
+    0% {
+        border-radius: 40% 60% 60% 40% / 70% 30% 70% 30%; }
+    100% {
+        border-radius: 40% 60%; } 
+    }
+
+    @keyframes spin {
+    to {
+        transform: rotate(1turn); 
+    } 
+    }
+        .st0{display:none;}
+        .st1{display:inline;}
+        .st2{opacity:0.29;}
+        .st3{fill:#FFFFFF;}
+        .st4{clip-path:url(#SVGID_2_);fill:#FFFFFF;}
+        .st5{clip-path:url(#SVGID_4_);}
+        .st6{clip-path:url(#SVGID_6_);}
+        .st7{clip-path:url(#SVGID_8_);}
+        .st8{clip-path:url(#SVGID_10_);}
+        .st9{fill:none;}
+        .st10{clip-path:url(#SVGID_12_);}
+        .st11{opacity:0.7;}
+        .st12{clip-path:url(#SVGID_14_);}
+        .st13{opacity:0.2;}
+        .st14{clip-path:url(#SVGID_16_);}
+        .st15{opacity:0.3;fill:#FFFFFF;enable-background:new    ;}
 </style>

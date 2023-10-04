@@ -82,7 +82,7 @@ class RegisterRequest extends FormRequest
     {
         $attributes = [
             'name' => 'Nama Lengkap',
-            'email' => 'NIDN',
+            'email' => 'NISN',
             'place_of_birth' => 'Tempat Lahir',
             'date_of_birth' => 'Tanggal Lahir',
             'address' => 'Alamat',

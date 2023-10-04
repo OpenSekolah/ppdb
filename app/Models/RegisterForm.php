@@ -22,7 +22,7 @@ class RegisterForm extends Model
         'sequence_number',
         'register_number',
         'name',
-        'nidn',
+        'nisn',
         'place_of_birth',
         'date_of_birth',
         'address',
@@ -89,7 +89,7 @@ class RegisterForm extends Model
     {
         foreach (explode(' ', $search) as $term) {
             $query->where('name', 'LIKE', '%'.$term.'%')
-                ->orWhere('nidn', 'LIKE', '%'.$term.'%');
+                ->orWhere('nisn', 'LIKE', '%'.$term.'%');
         }
     }
     

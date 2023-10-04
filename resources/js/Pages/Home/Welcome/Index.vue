@@ -110,7 +110,7 @@ onMounted(() => {
 
         <section class="body-font bg-gray-300" >
             <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
-                <div class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
+                <div class="lg:flex-grow w-full md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
                     <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-blue-700">Formulir Pendaftaran</h1>
                     <form class="w-full" @submit.prevent="createModel">
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">

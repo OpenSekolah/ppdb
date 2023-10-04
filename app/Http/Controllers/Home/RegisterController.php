@@ -33,7 +33,7 @@ class RegisterController extends Controller
     public function store(RegisterRequest $request)
     {
         $data = $request->validated();
-        $data['nidn'] = $data['email'];
+        $data['nisn'] = $data['email'];
         $data['date_of_birth'] = Carbon::parse($data['date_of_birth'])->format('Y-m-d');
         
         if($user = User::createWebApp($data)) {

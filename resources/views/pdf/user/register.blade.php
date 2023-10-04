@@ -57,9 +57,9 @@
                 </tr>
                 <tr>
                     <td valign="top"></td>
-                    <td valign="top">NIDN</td>
+                    <td valign="top">NISN</td>
                     <td valign="top">:</td>
-                    <td valign="top">{{$register_form->nidn}}</td>
+                    <td valign="top">{{$register_form->nisn}}</td>
                 </tr>
                 <tr>
                     <td valign="top"></td>

@@ -34,7 +34,7 @@ class RegisterController extends Controller
     {
         $data = $request->validated();
         $data['nisn'] = $data['email'];
-        $data['date_of_birth'] = Carbon::parse($data['date_of_birth'])->format('Y-m-d');
+        $data['date_of_birth'] = Carbon::parse($data['date_of_birth'])->translatedFormat('Y-m-d');
         
         if($user = User::createWebApp($data)) {
             // register_form.show

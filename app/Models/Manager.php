@@ -84,7 +84,7 @@ class Manager extends Authenticatable
     public function getFormattedCreatedAtAttribute($value)
     {
         try {
-            return Carbon::parse($this->created_at)->format('d F Y H:i:s');
+            return Carbon::parse($this->created_at)->translatedFormat('d F Y H:i:s');
         } catch (\Exception $exception) {
             return null;
         }
@@ -93,7 +93,7 @@ class Manager extends Authenticatable
     public function getFormattedUpdatedAtAttribute($value)
     {
         try {
-            return Carbon::parse($this->updated_at)->format('d F Y H:i:s');
+            return Carbon::parse($this->updated_at)->translatedFormat('d F Y H:i:s');
         } catch (\Exception $exception) {
             return null;
         }

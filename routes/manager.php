@@ -5,6 +5,7 @@ use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 
 use App\Http\Controllers\Managers\{
     Home\DashboardController,
+    Ppdb\AdmissionController
 };
 
 /*
@@ -43,4 +44,11 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/', DashboardController::class)->name('manager.dashboard');
+
+    Route::group(['prefix' => 'ppdb'], function () {
+        Route::resource('admissions', AdmissionController::class, [
+            'as' => 'manager.ppdb',
+            'only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']
+        ]);
+    });
 });

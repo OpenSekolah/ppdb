@@ -67,17 +67,17 @@ class RegisterForm extends Model
     
 	public function getFormattedCreatedAtAttribute($value)
     {
-        return Carbon::parse($this->created_at)->format('d M Y H:i:s');
+        return Carbon::parse($this->created_at)->translatedFormat('d M Y H:i:s');
     }
         
     public function getFormattedUpdatedAtAttribute($value)
     {
-        return Carbon::parse($this->updated_at)->format('d M Y H:i:s');
+        return Carbon::parse($this->updated_at)->translatedFormat('d M Y H:i:s');
     }
 
     public function getDateOfBirthAtAttribute($value)
     {
-        return Carbon::parse($this->date_of_birth)->format('d M Y');
+        return Carbon::parse($this->date_of_birth)->translatedFormat('d M Y');
     }
 
 	public function scopeWhereIsActive($query, $search = true)

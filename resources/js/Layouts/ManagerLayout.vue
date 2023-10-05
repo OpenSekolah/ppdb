@@ -64,6 +64,9 @@ onMounted(() => {
                                 <NavLink :href="route('manager.dashboard')" :active="route().current('manager.dashboard')">
                                     Dasbor
                                 </NavLink>
+                                <NavLink :href="route('manager.ppdb.admissions.index')" :active="route().current('manager.ppdb.admissions.*')">
+                                    Jadwal PPDB
+                                </NavLink>
                             </div>
                         </div>
 
@@ -160,7 +163,10 @@ onMounted(() => {
                 <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}" class="sm:hidden">
                     <div class="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink :href="route('manager.dashboard')" :active="route().current('manager.dashboard')">
-                            Vote
+                            Dasbor
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('manager.ppdb.admissions.index')" :active="route().current('manager.ppdb.admissions.*')">
+                            Jadwal PPDB
                         </ResponsiveNavLink>
                     </div>
 

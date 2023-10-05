@@ -24,9 +24,9 @@
         "flowbite": "^1.7.0",
         "flowbite-vue": "^0.0.16",
         "highcharts-vue": "^1.4.3",
-        "vue-chartjs": "^5.0.0",
-        "vue-sweetalert2": "^5.0.5",
         "lucide": "^0.17.3",
-        "lucide-vue-next": "^0.264.0"
+        "lucide-vue-next": "^0.264.0",
+        "vue-chartjs": "^5.0.0",
+        "vue-sweetalert2": "^5.0.5"
     }
 }

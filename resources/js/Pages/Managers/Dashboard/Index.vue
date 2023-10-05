@@ -46,7 +46,6 @@ const props = defineProps({
                 </div>
                 <div>
                     <span class="inline-block text-2xl font-bold">9</span>
-                    <span class="inline-block text-xl text-gray-500 font-semibold">0</span>
                     <span class="block text-gray-500">Data Jurusan/Program</span>
                 </div>
             </div>

@@ -8,7 +8,7 @@ Sistem PPDB ini dikelola dengan merujuk pada lisensi **GNU General Public Licens
 
 ## Cara Install
 	- git clone .....
-	- cd vote
+	- cd ppdb
     - composer install
 	- cp .env.example .env
     - php artisan key:generate

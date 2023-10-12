@@ -119,6 +119,7 @@ const createModel = () => {
                                         v-model="form.nisn"
                                         type="text"
                                         class="mt-1 block w-full"
+                                        :disabled="true"
                                     />
                                     <InputError :message="form.errors.nisn" class="mt-2" />
                                 </div>

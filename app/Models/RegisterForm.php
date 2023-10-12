@@ -18,6 +18,7 @@ class RegisterForm extends Model
      * @var string[]
      */
     protected $fillable = [
+        'admission_id',
         'user_id',
         'sequence_number',
         'register_number',
@@ -53,6 +54,10 @@ class RegisterForm extends Model
         'dateOfBirthAt',
     ];
     
+    public function admission() {
+        return $this->hasOne(Admission::class, 'id', 'admission_id');
+    }
+
     public function user() {
         return $this->hasOne(User::class, 'id', 'user_id');
     }

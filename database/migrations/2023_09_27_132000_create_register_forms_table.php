@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('register_forms', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->uuid('admission_id');
             $table->unsignedBigInteger('user_id');
             $table->bigInteger('sequence_number');
             $table->string('register_number', 255);
@@ -27,6 +28,7 @@ return new class extends Migration
             $table->uuid('competence_first');
             $table->uuid('competence_second');
             $table->timestamps();
+            $table->foreign('admission_id')->references('id')->on('admissions')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('competence_first')->references('id')->on('skill_competences')->onDelete('cascade');
             $table->foreign('competence_second')->references('id')->on('skill_competences')->onDelete('cascade');

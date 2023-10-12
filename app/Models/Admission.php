@@ -103,7 +103,11 @@ class Admission extends Model
         $data['end_date'] = Carbon::parse($data['end_date'])->translatedFormat('Y-m-d');
         if($mdl = self::create($data)) {
 			$mdl->fresh();
-			//
+			if($mdl->is_active) {
+                Admission::where('id', '<>', $mdl->id)->update([
+                    'is_active' => 0
+                ]);
+            }
 		}
 		
         return $mdl;
@@ -114,7 +118,11 @@ class Admission extends Model
         $data['start_date'] = Carbon::parse($data['start_date'])->translatedFormat('Y-m-d') ;
         $data['end_date'] = Carbon::parse($data['end_date'])->translatedFormat('Y-m-d') ;
         if($this->update($data)) {
-			//
+			if($this->is_active) {
+                Admission::where('id', '<>', $this->id)->update([
+                    'is_active' => 0
+                ]);
+            }
 		}
 
         return $this;

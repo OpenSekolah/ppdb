@@ -17,7 +17,6 @@ class RegisterPdfController extends Controller
     public function __invoke(User $user)
     {
         $auth = Auth::user();
-
         if($auth->id == $user->id) {
             return $user->getPdf();
         }

@@ -34,7 +34,7 @@
 </style>
 <body>
     <div>
-        <h3 class="text-center">Formulir Pendaftaran Peserta Didik Baru Tahun 2021</h3>
+        <h3 class="text-center">Formulir Pendaftaran Peserta Didik Baru Tahun {{$register_form->admission->year}} Gelombang {{$register_form->admission->stage}} </h3>
         <table class="tablex w-100 mt-10">
             <tbody>
                 <tr class="font-bold">

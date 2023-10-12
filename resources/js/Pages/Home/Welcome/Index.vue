@@ -111,132 +111,147 @@ onMounted(() => {
         <section class="body-font bg-gray-300" >
             <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
                 <div class="lg:flex-grow w-full md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
-                    <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-blue-700">Formulir Pendaftaran</h1>
-                    <form class="w-full" @submit.prevent="createModel">
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+                    <div class="w-full" v-if="attr?.register">
+                        <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-blue-700">
+                            Formulir Pendaftaran Tahun {{ attr?.register_data?.year }}
+                        </h1>
+                        <p>
+                            Gelombang {{ attr?.register_data?.stage }}, Dari Tanggal {{ attr?.register_data?.startDateAt }} Sampai Tanggal {{ attr?.register_data?.endDateAt }}
+                        </p>
+
+                        <hr class="h-px my-5 bg-gray-200 border-0 dark:bg-gray-700"/>
+
+                        <form class="w-full" @submit.prevent="createModel">
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+                                <div class="mt-4">
+                                    <InputLabel for="name" value="Nama Lengkap" />
+                                    <TextInput
+                                        id="name"
+                                        v-model="form.name"
+                                        type="text"
+                                        class="mt-1 block w-full"
+                                    />
+                                    <InputError class="mt-2" :message="form.errors.name" />
+                                </div>
+
+                                <div class="mt-4">
+                                    <InputLabel for="email" value="NISN" />
+                                    <TextInput
+                                        id="email"
+                                        v-model="form.email"
+                                        type="text"
+                                        class="mt-1 block w-full"
+                                    />
+                                    <InputError class="mt-2" :message="form.errors.email" />
+                                </div>
+
+                                <div class="mt-4">
+                                    <InputLabel for="place_of_birth" value="Tempat Lahir" />
+                                    <TextInput
+                                        id="place_of_birth"
+                                        v-model="form.place_of_birth"
+                                        type="text"
+                                        class="mt-1 block w-full"
+                                    />
+                                    <InputError class="mt-2" :message="form.errors.place_of_birth" />
+                                </div>
+
+                                <div class="mt-4">
+                                    <InputLabel for="date_of_birth" value="Tanggal Lahir" />
+                                    <VueDatePicker 
+                                        id="date_of_birth"
+                                        v-model="form.date_of_birth"
+                                        class="mt-1 block w-full"
+                                        format="dd/MM/yyyy"
+                                    >
+                                    </VueDatePicker>
+                                    <InputError class="mt-2" :message="form.errors.date_of_birth" />
+                                </div>                            
+                            </div>
+
                             <div class="mt-4">
-                                <InputLabel for="name" value="Nama Lengkap" />
+                                <InputLabel for="address" value="Alamat" />
+                                <TextArea
+                                    id="address"
+                                    v-model="form.address"
+                                    class="mt-1 block w-full"
+                                />
+                                <InputError class="mt-2" :message="form.errors.address" />
+                            </div>
+
+                            <div class="mt-4">
+                                <InputLabel for="from_school" value="Asal Sekolah" />
                                 <TextInput
-                                    id="name"
-                                    v-model="form.name"
+                                    id="from_school"
+                                    v-model="form.from_school"
                                     type="text"
                                     class="mt-1 block w-full"
                                 />
-                                <InputError class="mt-2" :message="form.errors.name" />
+                                <InputError class="mt-2" :message="form.errors.from_school" />
+                            </div>     
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+                                <div class="mt-4">
+                                    <InputLabel for="competence_first" value="Pilihan Jurusan 1" />
+                                    <Select
+                                        id="competence_first"
+                                        v-model="form.competence_first"
+                                        class="mt-1 block w-full"
+                                        :options="attr?.competences"
+                                    />
+                                    <InputError class="mt-2" :message="form.errors.competence_first" />
+                                </div>
+
+                                <div class="mt-4">
+                                    <InputLabel for="competence_second" value="Pilihan Jurusan 2" />
+                                    <Select
+                                        id="competence_second"
+                                        v-model="form.competence_second"
+                                        class="mt-1 block w-full"
+                                        :options="attr?.competences"
+                                    />
+                                    <InputError class="mt-2" :message="form.errors.competence_second" />
+                                </div>
+
+                                <div class="mt-4">
+                                    <InputLabel for="password" value="Kata Sandi" />
+                                    <TextInput
+                                        id="password"
+                                        v-model="form.password"
+                                        type="password"
+                                        class="mt-1 block w-full"
+                                    />
+                                    <InputError class="mt-2" :message="form.errors.password" />
+                                </div>
+
+                                <div class="mt-4">
+                                    <InputLabel for="password_confirmation" value="Konfirmasi Sandi" />
+                                    <TextInput
+                                        id="password_confirmation"
+                                        v-model="form.password_confirmation"
+                                        type="password"
+                                        class="mt-1 block w-full"
+                                    />
+                                    <InputError class="mt-2" :message="form.errors.password_confirmation" />
+                                </div>
                             </div>
 
-                            <div class="mt-4">
-                                <InputLabel for="email" value="NISN" />
-                                <TextInput
-                                    id="email"
-                                    v-model="form.email"
-                                    type="text"
-                                    class="mt-1 block w-full"
-                                />
-                                <InputError class="mt-2" :message="form.errors.email" />
+                            <div class="flex items-center justify-end mt-4">
+                                <Link :href="route('login')" class="underline text-sm text-gray-600 hover:text-blue-700 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    Sudah terdaftar?
+                                </Link>
+
+                                <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                                    Daftar
+                                </PrimaryButton>
                             </div>
-
-                            <div class="mt-4">
-                                <InputLabel for="place_of_birth" value="Tempat Lahir" />
-                                <TextInput
-                                    id="place_of_birth"
-                                    v-model="form.place_of_birth"
-                                    type="text"
-                                    class="mt-1 block w-full"
-                                />
-                                <InputError class="mt-2" :message="form.errors.place_of_birth" />
-                            </div>
-
-                            <div class="mt-4">
-                                <InputLabel for="date_of_birth" value="Tanggal Lahir" />
-                                <VueDatePicker 
-                                    id="date_of_birth"
-                                    v-model="form.date_of_birth"
-                                    class="mt-1 block w-full"
-                                    format="dd/MM/yyyy"
-                                >
-                                </VueDatePicker>
-                                <InputError class="mt-2" :message="form.errors.date_of_birth" />
-                            </div>                            
-                        </div>
-
-                        <div class="mt-4">
-                            <InputLabel for="address" value="Alamat" />
-                            <TextArea
-                                id="address"
-                                v-model="form.address"
-                                class="mt-1 block w-full"
-                            />
-                            <InputError class="mt-2" :message="form.errors.address" />
-                        </div>
-
-                        <div class="mt-4">
-                            <InputLabel for="from_school" value="Asal Sekolah" />
-                            <TextInput
-                                id="from_school"
-                                v-model="form.from_school"
-                                type="text"
-                                class="mt-1 block w-full"
-                            />
-                            <InputError class="mt-2" :message="form.errors.from_school" />
-                        </div>     
-
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-                            <div class="mt-4">
-                                <InputLabel for="competence_first" value="Pilihan Jurusan 1" />
-                                <Select
-                                    id="competence_first"
-                                    v-model="form.competence_first"
-                                    class="mt-1 block w-full"
-                                    :options="attr?.competences"
-                                />
-                                <InputError class="mt-2" :message="form.errors.competence_first" />
-                            </div>
-
-                            <div class="mt-4">
-                                <InputLabel for="competence_second" value="Pilihan Jurusan 2" />
-                                <Select
-                                    id="competence_second"
-                                    v-model="form.competence_second"
-                                    class="mt-1 block w-full"
-                                    :options="attr?.competences"
-                                />
-                                <InputError class="mt-2" :message="form.errors.competence_second" />
-                            </div>
-
-                            <div class="mt-4">
-                                <InputLabel for="password" value="Kata Sandi" />
-                                <TextInput
-                                    id="password"
-                                    v-model="form.password"
-                                    type="password"
-                                    class="mt-1 block w-full"
-                                />
-                                <InputError class="mt-2" :message="form.errors.password" />
-                            </div>
-
-                            <div class="mt-4">
-                                <InputLabel for="password_confirmation" value="Konfirmasi Sandi" />
-                                <TextInput
-                                    id="password_confirmation"
-                                    v-model="form.password_confirmation"
-                                    type="password"
-                                    class="mt-1 block w-full"
-                                />
-                                <InputError class="mt-2" :message="form.errors.password_confirmation" />
-                            </div>
-                        </div>
-
-                        <div class="flex items-center justify-end mt-4">
-                            <Link :href="route('login')" class="underline text-sm text-gray-600 hover:text-blue-700 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                Sudah terdaftar?
-                            </Link>
-
-                            <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                                Daftar
-                            </PrimaryButton>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
+                    <div class="w-full" v-else>
+                        <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-blue-700">
+                            Pendaftaran Belum Dibuka Seilahkan Periksa Jadwal PPDB
+                        </h1>
+                    </div>
                 </div>
                 <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
                     <img class="object-cover object-center rounded" alt="hero" src="/images/plot.jpeg">

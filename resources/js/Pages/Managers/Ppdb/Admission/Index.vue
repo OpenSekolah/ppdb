@@ -4,7 +4,7 @@ import Breadcrumb from '@/Components/Breadcrumb.vue';
 import ModalDelete from '@/Components/ModalDelete.vue';
 import Pagination from '@/Components/Pagination.vue';
 import ButtonLink from '@/Components/ButtonLink.vue';
-import VoteStatus from '@/Components/VoteStatus.vue';
+import IsActive from '@/Components/IsActive.vue';
 import { Link } from '@inertiajs/vue3';
 import { Dropdown } from 'flowbite-vue';
 
@@ -35,7 +35,7 @@ const props = defineProps({
         </template>
 
         <div class="">
-            <div class="max-w-full overflow-x-auto mx-auto sm:px-6 pb-48 lg:px-8">
+            <div class="max-w-full overflow-x-auto mx-auto pb-48">
                 <div class="relative mt-7">
                     <table class="w-full text-sm text-left text-gray-500">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
@@ -44,6 +44,7 @@ const props = defineProps({
                                 <th scope="col" class="px-6 py-3 text-center">Gelombang</th>
                                 <th scope="col" class="px-6 py-3 text-center">Kuota</th>
                                 <th scope="col" class="px-6 py-3 text-center">Rentang Waktu</th>
+                                <th scope="col" class="px-6 py-3 text-center">Status</th>
                                 <th class="px-6 py-3" width="10%">Aksi</th>
                             </tr>
                         </thead>
@@ -53,6 +54,7 @@ const props = defineProps({
                                 <th scope="row" class="px-6 py-4 border text-center">{{ item?.stage }}</th>
                                 <th scope="row" class="px-6 py-4 border text-center">{{ item?.quota }}</th>
                                 <th scope="row" class="px-6 py-4 border text-center">{{ item?.startDateAt }} <span class="text-red-500">sampai</span> {{ item?.endDateAt }}</th>
+                                <th scope="row" class="px-6 py-4 border text-center"><IsActive :is_active="item?.is_active" /></th>
                                 <td class="px-6 py-4 text-center border whitespace-nowrap">
                                     <div class="flex justify-center items-center">                                        
                                         <Link :href="route(attr?.route_name + 'edit', item?.id)" class="flex items-center mr-3" href="javascript:;">

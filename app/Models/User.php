@@ -67,7 +67,7 @@ class User extends Authenticatable
 
     public function getPdf() {
         
-        $register_form = RegisterForm::with(['competencefirst', 'competencesecond'])->where('user_id', $this->id)->first();
+        $register_form = RegisterForm::with(['competencefirst', 'competencesecond', 'admission'])->where('user_id', $this->id)->first();
         $data = [
             'register_form' => $register_form
         ];
@@ -85,14 +85,20 @@ class User extends Authenticatable
     }
 
     public static function createWebApp($request) {        
-        $data = $request;
-        $data['password'] = Hash::make($data['password']);
-        if($user = self::create($data)) {
-			$user->fresh();
-            $data['user_id'] = $user->id;
-			$user->register_form()->create($data);
-		}
-		
-        return $user;
+        $adminssion = Admission::where('is_active', true)->get();
+        if($adminssion) {
+            if(count($adminssion) == 1) {
+                $data = $request;
+                $data['password'] = Hash::make($data['password']);
+                if($user = self::create($data)) {
+                    $user->fresh();
+                    $data['user_id'] = $user->id;
+                    $data['admission_id'] = $adminssion[0]['id'];
+                    $user->register_form()->create($data);
+                }
+                
+                return $user;
+            }
+        }
     }
 }

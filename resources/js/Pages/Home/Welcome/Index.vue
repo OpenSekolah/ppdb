@@ -268,7 +268,7 @@ onMounted(() => {
 
                 <div class="flex flex-wrap -m-4">
                     <div class="xl:w-1/3 md:w-1/2 p-4" v-for="(item, index) in attr?.competence" :key="index">
-                        <div class="border border-gray-200 p-6 rounded-lg">
+                        <div class="border border-gray-200 p-6 rounded-lg bg-gray-100">
                             <h2 class="text-lg text-blue-700 font-medium title-font mb-2">{{ item?.name }}</h2>
                             <p class="leading-relaxed text-base">{{ item?.desc }}</p>
                         </div>

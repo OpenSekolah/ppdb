@@ -5,11 +5,12 @@ namespace App\Http\Controllers\Managers\Ppdb;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Http\Request;
-use App\Models\Admission;
-use App\Http\Requests\Managers\Ppdb\AdmissionRequest;
+use App\Models\RegisterForm;
+use App\Models\SkillCompetence;
+use App\Http\Requests\Managers\Ppdb\PpdbDataRequest;
 use Inertia\Inertia;
 
-class AdmissionController extends Controller
+class PpdbDataController extends Controller
 {
     private $path_render;
 	private $route_name;
@@ -25,9 +26,9 @@ class AdmissionController extends Controller
 
 	public function __construct()
 	{
-		$this->path_render = "Managers/Ppdb/Admission/";
-		$this->route_name = "manager.ppdb.admissions.";
-		$this->title_index = "Jadwal PPDB";
+		$this->path_render = "Managers/Ppdb/PpdbData/";
+		$this->route_name = "manager.ppdb.ppdbdatas.";
+		$this->title_index = "Berkas Data PPDB";
 		$this->title_create = "Tambah {$this->title_index}";
 		$this->title_edit = "Ubah {$this->title_index}";
 		$this->success_add = Lang::get('messages.success_add', ['attribute' => $this->title_index]);
@@ -81,7 +82,8 @@ class AdmissionController extends Controller
         $key = $request->query('key', 'religion');
         $queries = ['search', 'page'];
 		
-        $models = Admission::applyFilters($request->only($queries))
+        $models = RegisterForm::with(['user', 'admission'])
+                ->applyFilters($request->only($queries))
                 ->paginateData($limit)
                 ->appends(request()->query());
         
@@ -107,15 +109,7 @@ class AdmissionController extends Controller
      */
     public function create()
     {
-        return Inertia::render($this->path_render . 'Create', [
-            'attr' => [
-                'form_type' => 'POST',
-                'route_url' => route($this->route_name . 'store'),
-                'title' => $this->title_create,
-                'breadcrumb' => $this->breadcrumb_create,
-                'statuses' => generalStatus(),
-            ]
-		]);
+        abort(404);
     }
 
     /**
@@ -124,12 +118,9 @@ class AdmissionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AdmissionRequest $request)
+    public function store(PpdbDataRequest $request)
     {
-
-        $data = Admission::createWebApp($request);
-
-        return redirect()->route($this->route_name . 'index')->with('success', $this->success_add);
+        abort(404);
     }
 
     /**
@@ -138,7 +129,7 @@ class AdmissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Admission $admission)
+    public function show(RegisterForm $ppdbdata)
     {
         //
     }
@@ -149,16 +140,20 @@ class AdmissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Admission $admission)
+    public function edit(RegisterForm $ppdbdata)
     {
+        $ppdbdata->load(['user', 'admission']);
+
+        $competence = SkillCompetence::paginateData('all');
         return Inertia::render($this->path_render . 'Create', [
-            'model' => $admission,
+            'model' => $ppdbdata,
             'attr' => [
                 'form_type' => 'PUT',
-                'route_url' => route($this->route_name . 'update', $admission->id),
+                'route_url' => route($this->route_name . 'update', $ppdbdata->id),
                 'title' => $this->title_edit,
                 'breadcrumb' => $this->breadcrumb_edit,
-                'statuses' => generalStatus(),
+                'competences' => generalSelectFormat($competence['data']),
+                'statuses' => generalRegisterStatus(),
             ]
 		]);
     }
@@ -170,9 +165,9 @@ class AdmissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(AdmissionRequest $request, Admission $admission)
+    public function update(PpdbDataRequest $request, RegisterForm $ppdbdata)
     {
-        $admission->updateWebApp($request);
+        $ppdbdata->updateWebApp($request);
         return redirect()->route($this->route_name . 'index')->with('success', $this->success_edit);
     }
 
@@ -182,9 +177,9 @@ class AdmissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Admission $admission)
+    public function destroy(RegisterForm $ppdbdata)
     {
-        // if($admission->destroyWebapp()) {
+        // if($ppdbdata->destroyWebapp()) {
         //     redirect()->route($this->route_name . 'index')->with('success', $this->success_delete);
         // }
     }

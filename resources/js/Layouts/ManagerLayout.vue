@@ -67,6 +67,9 @@ onMounted(() => {
                                 <NavLink :href="route('manager.ppdb.admissions.index')" :active="route().current('manager.ppdb.admissions.*')">
                                     Jadwal PPDB
                                 </NavLink>
+                                <NavLink :href="route('manager.ppdb.ppdbdatas.index')" :active="route().current('manager.ppdb.ppdbdatas.*')">
+                                    Berkas PPDB
+                                </NavLink>
                             </div>
                         </div>
 
@@ -167,6 +170,9 @@ onMounted(() => {
                         </ResponsiveNavLink>
                         <ResponsiveNavLink :href="route('manager.ppdb.admissions.index')" :active="route().current('manager.ppdb.admissions.*')">
                             Jadwal PPDB
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('manager.ppdb.ppdbdatas.index')" :active="route().current('manager.ppdb.ppdbdatas.*')">
+                            Berkas PPDB
                         </ResponsiveNavLink>
                     </div>
 

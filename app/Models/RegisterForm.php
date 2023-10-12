@@ -20,6 +20,8 @@ class RegisterForm extends Model
     protected $fillable = [
         'admission_id',
         'user_id',
+        'competence_first',
+        'competence_second',
         'sequence_number',
         'register_number',
         'name',
@@ -28,8 +30,7 @@ class RegisterForm extends Model
         'date_of_birth',
         'address',
         'from_school',
-        'competence_first',
-        'competence_second',
+        'status',  
     ];
 
 	public $timestamps = true;
@@ -52,6 +53,7 @@ class RegisterForm extends Model
 		'formattedCreatedAt',
         'formattedUpdatedAt',
         'dateOfBirthAt',
+        'statusAt',
     ];
     
     public function admission() {
@@ -83,6 +85,20 @@ class RegisterForm extends Model
     public function getDateOfBirthAtAttribute($value)
     {
         return Carbon::parse($this->date_of_birth)->translatedFormat('d M Y');
+    }
+
+    public function getStatusAtAttribute($value)
+    {
+        $status = "";
+        if($this->status == 'verified') {
+            $status = "Diverifikasi";
+        } else if($this->status == 'accepted') {
+            $status = "Diterima";
+        } else if($this->status == 'reserved') {
+            $status = "Dicadangkan";
+        }
+
+        return $status;
     }
 
 	public function scopeWhereIsActive($query, $search = true)
@@ -126,8 +142,7 @@ class RegisterForm extends Model
     }
 
     public function updateWebApp($request) {
-        $data = $request;
-        
+        $data = $request->validated();
         if($this->update($data)) {
 			//
 		}

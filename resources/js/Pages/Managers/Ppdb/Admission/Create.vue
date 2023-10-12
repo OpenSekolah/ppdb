@@ -1,5 +1,5 @@
 <script setup>
-import AppLayout from '@/Layouts/AppLayout.vue';
+import ManagerLayout from '@/Layouts/ManagerLayout.vue';
 
 import { useForm } from '@inertiajs/vue3';
 import Breadcrumb from '@/Components/Breadcrumb.vue';
@@ -46,7 +46,7 @@ const createModel = () => {
 </script>
 
 <template>
-    <AppLayout :title="attr?.title">
+    <ManagerLayout :title="attr?.title">
         <template #header>
             <div class="grid grid-cols-12 gap-6">
                 <div class="col-span-12 sm:col-span-6 xl:col-span-9 intro-y">
@@ -161,5 +161,5 @@ const createModel = () => {
                 </FormSection>
             </div>
         </div>
-    </AppLayout>
+    </ManagerLayout>
 </template>

@@ -4,6 +4,21 @@ function generalMoney($number = 0, $format = 'RP.') {
 	return $format . ' ' . number_format($number, 0, ',', '.');
 }
 
+function generalExplodeValidation($data) {
+	return implode(",",array_keys(generalGetArrayId($data)));
+}
+
+function generalGetArrayId($array = []) {
+	$newArray = [];
+	foreach($array as $value) {
+		if($value['id'] !== '') {
+			$newArray[$value['id']] = $value['name'];
+		}
+	}
+
+	return $newArray;
+}
+
 function generalSelectFormat($datas = []) {
 	$array = [
 		['id' => "", 'name' => '++++++Pilih++++++']
@@ -18,10 +33,31 @@ function generalSelectFormat($datas = []) {
 	return $array;
 }
 
+function generalRegisterStatus() {
+	return [
+		[
+			'id' => '++++++Pilih++++++',
+			'name' => ''
+		],
+		[
+			'id' => 'verified',
+			'name' => 'Diverifikasi'
+		],
+		[
+			'id' => 'accepted',
+			'name' => 'Diterima'
+		],
+		[
+			'id' => 'reserved',
+			'name' => 'Dicadangkan'
+		],
+	];
+}
+
 function generalStatus() {
 	return [
 		[
-			'id' => '',
+			'id' => '++++++Pilih++++++',
 			'name' => ''
 		],
 		[

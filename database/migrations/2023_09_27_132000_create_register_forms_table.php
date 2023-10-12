@@ -17,6 +17,8 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->uuid('admission_id');
             $table->unsignedBigInteger('user_id');
+            $table->uuid('competence_first');
+            $table->uuid('competence_second');
             $table->bigInteger('sequence_number');
             $table->string('register_number', 255);
             $table->string('name', 255);
@@ -25,8 +27,7 @@ return new class extends Migration
             $table->date('date_of_birth');
             $table->text('address');
             $table->string('from_school', 255);
-            $table->uuid('competence_first');
-            $table->uuid('competence_second');
+            $table->enum('status', ['verified', 'accepted', 'reserved'])->default('verified');
             $table->timestamps();
             $table->foreign('admission_id')->references('id')->on('admissions')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

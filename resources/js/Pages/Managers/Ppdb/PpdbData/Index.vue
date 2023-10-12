@@ -4,9 +4,8 @@ import Breadcrumb from '@/Components/Breadcrumb.vue';
 import ModalDelete from '@/Components/ModalDelete.vue';
 import Pagination from '@/Components/Pagination.vue';
 import ButtonLink from '@/Components/ButtonLink.vue';
-import IsActive from '@/Components/IsActive.vue';
+import RegisterStatus from '@/Components/RegisterStatus.vue';
 import { Link } from '@inertiajs/vue3';
-import { Dropdown } from 'flowbite-vue';
 
 const props = defineProps({
 	models: {
@@ -29,7 +28,7 @@ const props = defineProps({
                     <Breadcrumb :breadcrumb="attr?.breadcrumb"/>
                 </div>
                 <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y text-right">
-                    <ButtonLink button_name="danger" :href="attr?.add_link" >Tambah</ButtonLink>
+                    
                 </div>
             </div>
         </template>
@@ -40,21 +39,19 @@ const props = defineProps({
                     <table class="w-full text-sm text-left text-gray-500">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                             <tr>
-                                <th scope="col" class="px-6 py-3 text-center">Tahun</th>
-                                <th scope="col" class="px-6 py-3 text-center">Gelombang</th>
-                                <th scope="col" class="px-6 py-3 text-center">Kuota</th>
-                                <th scope="col" class="px-6 py-3 text-center">Rentang Waktu</th>
+                                <th scope="col" class="px-6 py-3 text-center">Nama Lengkap</th>
+                                <th scope="col" class="px-6 py-3 text-center">NISN</th>
+                                <th scope="col" class="px-6 py-3 text-center">Nomor Pendaftaran</th>
                                 <th scope="col" class="px-6 py-3 text-center">Status</th>
                                 <th class="px-6 py-3 text-center" width="10%">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="bg-white border-b" v-for="(item, index) in models.data" :key="index" >
-                                <th scope="row" class="px-6 py-4 border text-center">{{ item?.year }}</th>
-                                <th scope="row" class="px-6 py-4 border text-center">{{ item?.stage }}</th>
-                                <th scope="row" class="px-6 py-4 border text-center">{{ item?.quota }}</th>
-                                <th scope="row" class="px-6 py-4 border text-center">{{ item?.startDateAt }} <span class="text-red-500">sampai</span> {{ item?.endDateAt }}</th>
-                                <th scope="row" class="px-6 py-4 border text-center"><IsActive :is_active="item?.is_active" /></th>
+                                <th scope="row" class="px-6 py-4 border">{{ item?.name }}</th>
+                                <th scope="row" class="px-6 py-4 border text-center">{{ item?.nisn }}</th>
+                                <th scope="row" class="px-6 py-4 border text-center">{{ item?.register_number  }}</th>
+                                <th scope="row" class="px-6 py-4 border text-center"><RegisterStatus :status="item?.status"/></th>
                                 <td class="px-6 py-4 text-center border whitespace-nowrap">
                                     <div class="flex justify-center items-center">                                        
                                         <Link :href="route(attr?.route_name + 'edit', item?.id)" class="flex items-center mr-3" href="javascript:;">

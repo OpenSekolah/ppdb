@@ -237,9 +237,28 @@
                     </tr>
                     <tr class="font-bold">
                         <td valign="top">{{ $ordernumber }}.</td>
-                        <td valign="top">Data {{$value->file_type}}</td>
-                        <td valign="top" colspan="2">
-                            <img src="{{asset('storage/userfile/'.$value->file_type.'/'.$value->file)}}" style="max-width: 100% !important;"/>
+                        <td valign="top" colspan="3">
+                            @if($value->file_type == 'kk') 
+                                Kartu Keluarga
+                                <br>
+                                <img src="{{asset('storage/userfile/'.$value->file_type.'/'.$value->file)}}" style="max-width: 100% !important;height:auto !important;"/>
+                            @elseif($value->file_type == 'foto') 
+                                Foto
+                                <br>
+                                <img src="{{asset('storage/userfile/'.$value->file_type.'/'.$value->file)}}" style="max-width: 300px !important;height:auto !important;"/>
+                            @elseif($value->file_type == 'akta_kelahiran') 
+                                Akta Kelahiran
+                                <br>
+                                <img src="{{asset('storage/userfile/'.$value->file_type.'/'.$value->file)}}" style="max-width: 100% !important;height:auto !important;"/>
+                            @elseif($value->file_type == 'ijazah') 
+                                Ijazah/SKL
+                                <br>
+                                <img src="{{asset('storage/userfile/'.$value->file_type.'/'.$value->file)}}" style="max-width: 100% !important;height:auto !important;"/>
+                            @elseif($value->file_type == 'kip') 
+                                KIP
+                                <br>
+                                <img src="{{asset('storage/userfile/'.$value->file_type.'/'.$value->file)}}" style="max-width: 100% !important;height:auto !important;"/>
+                            @endif
                         </td>
                     </tr>
                 @endforeach

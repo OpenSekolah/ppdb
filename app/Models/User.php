@@ -86,9 +86,10 @@ class User extends Authenticatable
             ->loadView('pdf.user.register', $data);	 
 
         //return $pdf->stream("invoice-{$this->invoice_number}.pdf");
+        $time = time();
         return response()->make($pdf->stream(), 200, [
             'Content-Type' => 'application/pdf',
-            'Content-Disposition' => 'inline; filename="invoice-'.$this->invoice_number.'.pdf"',
+            'Content-Disposition' => "inline; filename='registrasi-form-{$register_form->register_number}-{$time}.pdf'",
         ]);
     }
 

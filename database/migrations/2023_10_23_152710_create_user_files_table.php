@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('user_files', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('register_form_id');
-            $table->string('name', 255)->comment('Nama Berkas');
-            $table->string('file', 255)->comment('Berkas');
+            $table->string('name', 255)->comment('Nama Berkas')->nullable()->default(null);
+            $table->string('file', 255)->comment('Berkas')->nullable()->default(null);
             $table->enum('file_type', ['foto', 'kk', 'akta_kelahiran', 'ijazah', 'kip'])->comment('Tipe Data');
             $table->timestamps();
             $table->foreign('register_form_id')->references('id')->on('register_forms')->onDelete('cascade');

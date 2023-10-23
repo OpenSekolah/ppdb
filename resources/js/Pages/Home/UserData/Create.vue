@@ -885,9 +885,6 @@ onMounted(() => {
                             </template>
                         </FormSection>
                     </tab>
-                    <tab name="file" title="Upload Foto">
-                        Lorem...
-                    </tab>
                 </tabs>
             </div>
         </section>

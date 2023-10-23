@@ -11,6 +11,7 @@ use App\Http\Controllers\{
     Home\DashboardController,
     Home\RegisterPdfController,
     Home\UserDataController,
+    Home\UserFileController,
 };
 
 /*
@@ -47,4 +48,7 @@ Route::middleware([
 
     Route::get('/userdata', [UserDataController::class, 'create'])->name('userdata.create');
     Route::post('/userdata', [UserDataController::class, 'store'])->name('userdata.store');
+
+    Route::get('/userfile', [UserFileController::class, 'create'])->name('userfile.create');
+    Route::post('/userfile', [UserFileController::class, 'store'])->name('userfile.store');
 });

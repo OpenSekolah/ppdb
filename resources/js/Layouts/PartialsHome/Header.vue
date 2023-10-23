@@ -46,6 +46,11 @@ const logout = () => {
                             </HomeNavLink>
                         </li>
                         <li>
+                            <HomeNavLink :href="route('userfile.create')" :active="route().current('userfile.create')">
+                                Upload Berkas
+                            </HomeNavLink>
+                        </li>
+                        <li>
                             <HomeNavLink href="#" :active="route().current('login')">
                                 <form @submit.prevent="logout">
                                     <button type="submit">

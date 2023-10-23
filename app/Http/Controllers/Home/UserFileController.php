@@ -39,12 +39,16 @@ class UserFileController extends Controller
         $photo_model = UserFile::where('register_form_id', $register->id)->where('file_type', 'foto')->first();
         $kk_model = UserFile::where('register_form_id', $register->id)->where('file_type', 'kk')->first();
         $ijazah_model = UserFile::where('register_form_id', $register->id)->where('file_type', 'ijazah')->first();
+        $akta_kelahiran_model = UserFile::where('register_form_id', $register->id)->where('file_type', 'akta_kelahiran')->first();
+        $kip_model = UserFile::where('register_form_id', $register->id)->where('file_type', 'kip')->first();
 
         return Inertia::render($this->path_render . 'Create', [
             'attr' => [
                 'photo_model' => $photo_model,
                 'kk_model' => $kk_model,
                 'ijazah_model' => $ijazah_model,
+                'akta_kelahiran_model' => $akta_kelahiran_model,
+                'kip_model' => $kip_model,
                 'route_url' => route("{$this->route_name}store"),
                 'title_photo' => 'Unggah Foto',
                 'title_photo_desc' => 'Unggah Foto Anda',
@@ -52,6 +56,10 @@ class UserFileController extends Controller
                 'title_kk_desc' => 'Unggah Kartu Keluarga Anda',
                 'title_ijazah' => 'Unggah Ijazah/SKL',
                 'title_ijazah_desc' => 'Unggah Ijazah/SKL Anda',
+                'title_akta_kelahiran' => 'Unggah Akta Kelahiran',
+                'title_akta_kelahiran_desc' => 'Unggah Akta Kelahiran Anda',
+                'title_kip' => 'Unggah KIP',
+                'title_kip_kelahiran_desc' => 'Unggah KIP Anda',
             ]
         ]);
         
@@ -75,6 +83,10 @@ class UserFileController extends Controller
             $request->merge(['file_type' => 'kk']);
         } else if($data['type'] == 'ijazah') {
             $request->merge(['file_type' => 'ijazah']);
+        } else if($data['type'] == 'akta_kelahiran') {
+            $request->merge(['file_type' => 'akta_kelahiran']);
+        } else if($data['type'] == 'kip') {
+            $request->merge(['file_type' => 'kip']);
         }
 
         if(UserFile::createWebApp($request)) {

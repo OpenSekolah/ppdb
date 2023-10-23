@@ -27,7 +27,7 @@ class UserFileRequest extends FormRequest
         $rules = [
             'type' => [
                 'required',
-                'in:photo,kk,ijazah',
+                'in:photo,kk,ijazah,akta_kelahiran,kip',
             ],
             'file_photo' => [
                 'required',

@@ -8,10 +8,6 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import Button from '@/Components/Button.vue';
 import ActionMessage from '@/Components/ActionMessage.vue';
-import TextInput from '@/Components/TextInput.vue';
-import TextArea from '@/Components/TextArea.vue';
-import Select from '@/Components/Select.vue';
-import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
 import { alertMessage } from '@/Utils/global.js';
 
@@ -19,6 +15,8 @@ const activeTab = ref('photo');
 const photoInput = ref(null);
 const kkInput = ref(null);
 const ijazahInput = ref(null);
+const aktaKelahiranInput = ref(null);
+const kipInput = ref(null);
 
 const props = defineProps({
 	register_model: {
@@ -46,6 +44,18 @@ const kk = useForm({
 const ijazah = useForm({
     _method: 'POST',
     type: 'ijazah',
+    file_photo: null,
+});
+
+const akta_kelahiran = useForm({
+    _method: 'POST',
+    type: 'akta_kelahiran',
+    file_photo: null,
+});
+
+const kip = useForm({
+    _method: 'POST',
+    type: 'kip',
     file_photo: null,
 });
 
@@ -78,6 +88,28 @@ const createModel = () => {
         }
 
         ijazah.post(props?.attr?.route_url, {
+            preserveScroll: true,
+            onSuccess: () => {
+                alertMessage();
+            },
+        });
+    } else if(activeTab.value == 'akta_kelahiran') {
+        if(aktaKelahiranInput.value) {
+            akta_kelahiran.file_photo = aktaKelahiranInput.value.files[0];
+        }
+
+        akta_kelahiran.post(props?.attr?.route_url, {
+            preserveScroll: true,
+            onSuccess: () => {
+                alertMessage();
+            },
+        });
+    } else if(activeTab.value == 'kip') {
+        if(kipInput.value) {
+            kip.file_photo = kipInput.value.files[0];
+        }
+
+        kip.post(props?.attr?.route_url, {
             preserveScroll: true,
             onSuccess: () => {
                 alertMessage();
@@ -211,6 +243,86 @@ onMounted(() => {
                                 </ActionMessage>
 
                                 <Button :class="{ 'opacity-25': ijazah.processing }" :disabled="ijazah.processing">
+                                    Simpan
+                                </Button>
+                            </template>
+                        </FormSection>
+                    </tab>
+
+                    <tab name="akta_kelahiran" :title="attr?.title_akta_kelahiran">
+                        <FormSection full_layout="grid grid-cols-1 gap-6" @submitted="createModel">
+                            <template #title>
+                                {{ attr?.title_akta_kelahiran }}
+                            </template>
+
+                            <template #description>
+                                {{ attr?.title_akta_kelahiran_desc }} 
+                            </template>
+
+                            <template #form>
+                                <div class="col-span-6 sm:col-span-4">
+                                    <InputLabel for="year" value="Akta Kelahiran" />
+                                    <input 
+                                        ref="aktaKelahiranInput"
+                                        type="file" 
+                                        class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200" 
+                                    />
+                                    <InputError class="mt-2" :message="akta_kelahiran.errors.file_photo" />
+
+                                    <img 
+                                        v-if="attr?.akta_kelahiran_model?.photoAt"
+                                        :src="attr?.akta_kelahiran_model?.photoAt" 
+                                        class="h-auto max-w-6xl rounded-lg mt-7 "
+                                    />
+                                </div>
+                            </template>
+
+                            <template #actions>
+                                <ActionMessage :on="akta_kelahiran.recentlySuccessful" class="mr-3">
+                                    Saved.
+                                </ActionMessage>
+
+                                <Button :class="{ 'opacity-25': akta_kelahiran.processing }" :disabled="akta_kelahiran.processing">
+                                    Simpan
+                                </Button>
+                            </template>
+                        </FormSection>
+                    </tab>
+
+                    <tab name="kip" :title="attr?.title_kip">
+                        <FormSection full_layout="grid grid-cols-1 gap-6" @submitted="createModel">
+                            <template #title>
+                                {{ attr?.title_kip }}
+                            </template>
+
+                            <template #description>
+                                {{ attr?.title_kip_desc }} 
+                            </template>
+
+                            <template #form>
+                                <div class="col-span-6 sm:col-span-4">
+                                    <InputLabel for="year" value="Akta Kelahiran" />
+                                    <input 
+                                        ref="kipInput"
+                                        type="file" 
+                                        class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200" 
+                                    />
+                                    <InputError class="mt-2" :message="kip.errors.file_photo" />
+
+                                    <img 
+                                        v-if="attr?.kip_model?.photoAt"
+                                        :src="attr?.kip_model?.photoAt" 
+                                        class="h-auto max-w-6xl rounded-lg mt-7 "
+                                    />
+                                </div>
+                            </template>
+
+                            <template #actions>
+                                <ActionMessage :on="kip.recentlySuccessful" class="mr-3">
+                                    Saved.
+                                </ActionMessage>
+
+                                <Button :class="{ 'opacity-25': kip.processing }" :disabled="kip.processing">
                                     Simpan
                                 </Button>
                             </template>

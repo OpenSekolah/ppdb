@@ -11,7 +11,7 @@ function generalExplodeValidation($data) {
 function generalGetArrayId($array = []) {
 	$newArray = [];
 	foreach($array as $value) {
-		if($value['id'] !== '') {
+		if($value['id'] != '') {
 			$newArray[$value['id']] = $value['name'];
 		}
 	}
@@ -36,8 +36,8 @@ function generalSelectFormat($datas = []) {
 function generalRegisterStatus() {
 	return [
 		[
-			'id' => '++++++Pilih++++++',
-			'name' => ''
+			'id' => '',
+			'name' => '++++++Pilih++++++'
 		],
 		[
 			'id' => 'verified',
@@ -57,8 +57,8 @@ function generalRegisterStatus() {
 function generalStatus() {
 	return [
 		[
-			'id' => '++++++Pilih++++++',
-			'name' => ''
+			'id' => '',
+			'name' => '++++++Pilih++++++'
 		],
 		[
 			'id' => 0,
@@ -74,8 +74,8 @@ function generalStatus() {
 function generalResidence() {
 	return [
 		[
-			'id' => '++++++Pilih++++++',
-			'name' => ''
+			'id' => '',
+			'name' => '++++++Pilih++++++'
 		],
 		[
 			'id' => 'Tinggal dengan Orangtua/Wali',
@@ -115,8 +115,8 @@ function generalResidence() {
 function generalTransportation() {
 	return [
 		[
-			'id' => '++++++Pilih++++++',
-			'name' => ''
+			'id' => '',
+			'name' => '++++++Pilih++++++'
 		],
 		[
 			'id' => 'Sepeda',
@@ -152,8 +152,8 @@ function generalTransportation() {
 function generalDistance() {
 	return [
 		[
-			'id' => '++++++Pilih++++++',
-			'name' => ''
+			'id' => '',
+			'name' => '++++++Pilih++++++'
 		],
 		[
 			'id' => 'Kurang dari 5 km',
@@ -181,8 +181,8 @@ function generalDistance() {
 function generalTravelingTime() {
 	return [
 		[
-			'id' => '++++++Pilih++++++',
-			'name' => ''
+			'id' => '',
+			'name' => '++++++Pilih++++++'
 		],
 		[
 			'id' => '1-10 menit',
@@ -208,5 +208,195 @@ function generalTravelingTime() {
 			'id' => '>2 jam',
 			'name' => '>2 jam'
 		]
+	];
+}
+
+function generalEducation() {
+	return [
+		[
+			'id' => '',
+			'name' => '++++++Pilih++++++'
+		],
+		[
+			'id' => 'SD/Sederajat',
+			'name' => 'SD/Sederajat'
+		],
+		[
+			'id' => 'SMP/Sederajat',
+			'name' => 'SMP/Sederajat'
+		],
+		[
+			'id' => 'SMA/Sederajat',
+			'name' => 'SMA/Sederajat'
+		],
+		[
+			'id' => 'D1',
+			'name' => 'D1'
+		],
+		[
+			'id' => 'D2',
+			'name' => 'D2'
+		],
+		[
+			'id' => 'D3',
+			'name' => 'D3'
+		],
+		[
+			'id' => 'D4/S1',
+			'name' => 'D4/S1'
+		],
+		[
+			'id' => 'S2',
+			'name' => 'S2'
+		],
+		[
+			'id' => 'S3',
+			'name' => 'S3'
+		],
+		[
+			'id' => 'Tidak Bersekolah',
+			'name' => 'Tidak Bersekolah'
+		],
+	];
+}
+
+function generalWork() {
+	return [
+		[
+			'id' => '',
+			'name' => '++++++Pilih++++++'
+		],
+		[
+			'id' => 'Tidak Bekerja',
+			'name' => 'Tidak Bekerja'
+		],
+		[
+			'id' => 'Pensiunan',
+			'name' => 'Pensiunan'
+		],
+		[
+			'id' => 'PNS',
+			'name' => 'PNS'
+		],
+		[
+			'id' => 'TNI/Polisi',
+			'name' => 'TNI/Polisi'
+		],
+		[
+			'id' => 'Guru/Dosen',
+			'name' => 'Guru/Dosen'
+		],
+		[
+			'id' => 'Pegawai Swasta',
+			'name' => 'Pegawai Swasta'
+		],
+		[
+			'id' => 'Wiraswasta',
+			'name' => 'Wiraswasta'
+		],
+		[
+			'id' => 'Pengacara/Jaksa/Hakim/Notaris',
+			'name' => 'Pengacara/Jaksa/Hakim/Notaris'
+		],
+		[
+			'id' => 'Seniman/Pelukis/Artis/Sejenis',
+			'name' => 'Seniman/Pelukis/Artis/Sejenis'
+		],
+		[
+			'id' => 'Dokter/Bidan/Perawat',
+			'name' => 'Dokter/Bidan/Perawat'
+		],
+		[
+			'id' => 'Pilot/Pramugara',
+			'name' => 'Pilot/Pramugara'
+		],
+		[
+			'id' => 'Pedagang',
+			'name' => 'Pedagang'
+		],
+		[
+			'id' => 'Petani/Peternak',
+			'name' => 'Petani/Peternak'
+		],
+		[
+			'id' => 'Nelayan',
+			'name' => 'Nelayan'
+		],
+		[
+			'id' => 'Buruh (Tani/Pabrik/Bangunan)',
+			'name' => 'Buruh (Tani/Pabrik/Bangunan)'
+		],
+		[
+			'id' => 'Sopir/Masinis/Kondektur',
+			'name' => 'Sopir/Masinis/Kondektur'
+		],
+		[
+			'id' => 'Politikus',
+			'name' => 'Politikus'
+		],
+		[
+			'id' => 'Lainnya',
+			'name' => 'Lainnya'
+		],
+	];
+}
+
+function generalIncome() {
+	return [
+		[
+			'id' => '',
+			'name' => '++++++Pilih++++++'
+		],
+		[
+			'id' => 'Kurang dari 500.000',
+			'name' => 'Kurang dari 500.000'
+		],
+		[
+			'id' => '500.000 - 1.000.000',
+			'name' => '500.000 - 1.000.000'
+		],
+		[
+			'id' => '1.000.001 - 2.000.000',
+			'name' => '1.000.001 - 2.000.000'
+		],
+		[
+			'id' => '2.000.001 - 3.000.000',
+			'name' => '2.000.001 - 3.000.000'
+		],
+		[
+			'id' => '3.000.001 - 5.000.000',
+			'name' => '3.000.001 - 5.000.000'
+		],
+		[
+			'id' => 'Lebih dari 5.000.000',
+			'name' => 'Lebih dari 5.000.000'
+		],
+		[
+			'id' => 'Tidak ada',
+			'name' => 'Tidak ada'
+		],
+		
+	];
+}
+
+function generalParentGuardianStatus() {
+	return [
+		[
+			'id' => '',
+			'name' => '++++++Pilih++++++'
+		],
+		[
+			'id' => 'Masih Hidup',
+			'name' => 'Masih Hidup'
+		],
+		[
+			'id' => 'Meninggal Dunia',
+			'name' => 'Meninggal Dunia'
+		],
+		[
+			'id' => 'Tidak Diketahui',
+			'name' => 'Tidak Diketahui'
+		],
+		
 	];
 }

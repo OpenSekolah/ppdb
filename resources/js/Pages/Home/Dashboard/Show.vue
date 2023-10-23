@@ -23,7 +23,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <HomeLayout :title="`Welcome`" >
+    <HomeLayout :title="`Dasbor`" >
         <section class="text-gray-600 body-font bg-gray-50">
             <div class="container px-5 py-24 mx-auto">
                 <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-9 xl:gap-8">

@@ -7,8 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 use App\Traits\Uuid;
 use Carbon\Carbon;
 
-class Address extends Model
+class ParentGuardian extends Model
 {
+    use HasFactory;
+
     use HasFactory, Uuid;
 
     /**
@@ -18,18 +20,16 @@ class Address extends Model
      */
     protected $fillable = [
         'register_form_id',
-        'residence',
-        'address',
-        'rt',
-        'rw',
-        'village',
-        'subdistrict',
-        'province',
-        'postal_code',
-        'address_coordinates',
-        'transportation',
-        'distance',
-        'traveling_time',
+        'status',
+        'nik',
+        'name',
+        'place_of_birth',
+        'date_of_birth',
+        'education',
+        'work',
+        'income',
+        'phone',
+        'data_type',
     ];
 
 	public $timestamps = true;
@@ -66,8 +66,8 @@ class Address extends Model
     public function scopeWhereSearch($query, $search)
     {
         foreach (explode(' ', $search) as $term) {
-            $query->where('residence', 'LIKE', '%'.$term.'%')
-                ->orWhere('address', 'LIKE', '%'.$term.'%');
+            $query->where('nik', 'LIKE', '%'.$term.'%')
+                ->orWhere('name', 'LIKE', '%'.$term.'%');
         }
     }
     
@@ -90,11 +90,12 @@ class Address extends Model
 
 	public static function createWebApp($request) {        
         $data = $request;
-        if($user = self::updateOrCreate(['register_form_id' => $data['register_form_id']], $data)) {
-            $user->fresh();
-            $rgform = RegisterForm::find($user->register_form_id);
-            $rgform->address = $user->address;
-            $rgform->save();
+        $data['date_of_birth'] = Carbon::parse($data['date_of_birth'])->format('Y-m-d');
+        if($user = self::updateOrCreate([
+            'register_form_id' => $data['register_form_id'],
+            'data_type' => $data['data_type'],
+        ], $data)) {
+			$user->fresh();
 		}
 		
         return $user;

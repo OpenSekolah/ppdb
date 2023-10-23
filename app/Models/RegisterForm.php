@@ -71,6 +71,14 @@ class RegisterForm extends Model
     public function competencesecond() {
         return $this->hasOne(SkillCompetence::class, 'id', 'competence_second');
     }
+
+    public function addresses() {
+        return $this->hasOne(Address::class, 'register_form_id', 'id');
+    }
+
+    public function parent_guardians() {
+        return $this->hasMany(ParentGuardian::class, 'register_form_id', 'id')->orderBy('data_type', 'ASC');
+    }
     
 	public function getFormattedCreatedAtAttribute($value)
     {

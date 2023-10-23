@@ -67,7 +67,14 @@ class User extends Authenticatable
 
     public function getPdf() {
         
-        $register_form = RegisterForm::with(['competencefirst', 'competencesecond', 'admission'])->where('user_id', $this->id)->first();
+        $register_form = RegisterForm::with([
+            'competencefirst',
+            'competencesecond',
+            'admission',
+            'addresses',
+            'parent_guardians',
+        ])->where('user_id', $this->id)->first();
+
         $data = [
             'register_form' => $register_form
         ];

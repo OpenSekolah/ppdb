@@ -43,12 +43,6 @@
                     <td width="1%"></td>
                     <td valign="top"></td>
                 </tr>
-                <tr class="font-bold">
-                    <td valign="top">2.</td>
-                    <td valign="top">Registrasi Peserta Didik</td>
-                    <td valign="top"></td>
-                    <td valign="top"></td>
-                </tr>
                 <tr>
                     <td valign="top"></td>
                     <td valign="top">Nama Lengkap</td>
@@ -69,12 +63,6 @@
                 </tr>
                 <tr>
                     <td valign="top"></td>
-                    <td valign="top">Alamat</td>
-                    <td valign="top">:</td>
-                    <td valign="top">{{$register_form->address}}</td>
-                </tr>
-                <tr>
-                    <td valign="top"></td>
                     <td valign="top">Asal Sekolah</td>
                     <td valign="top">:</td>
                     <td valign="top">{{$register_form->from_school}}</td>
@@ -91,6 +79,153 @@
                     <td valign="top">:</td>
                     <td valign="top">{{$register_form->competencesecond->name}}</td>
                 </tr>
+                <tr class="font-bold">
+                    <td><br/><br/></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr class="font-bold">
+                    <td valign="top">2.</td>
+                    <td valign="top">Alamat</td>
+                    <td valign="top"></td>
+                    <td valign="top"></td>
+                </tr>
+                <tr>
+                    <td valign="top"></td>
+                    <td valign="top">Status Tempat Tinggal</td>
+                    <td valign="top">:</td>
+                    <td valign="top">{{$register_form->addresses->residence}}</td>
+                </tr>
+                <tr>
+                    <td valign="top"></td>
+                    <td valign="top">Alamat</td>
+                    <td valign="top">:</td>
+                    <td valign="top">{{$register_form->addresses->address}}</td>
+                </tr>
+                <tr>
+                    <td valign="top"></td>
+                    <td valign="top">RT/RW</td>
+                    <td valign="top">:</td>
+                    <td valign="top">{{$register_form->addresses->rt}}/{{$register_form->addresses->rw}}</td>
+                </tr>
+                <tr>
+                    <td valign="top"></td>
+                    <td valign="top">Desa</td>
+                    <td valign="top">:</td>
+                    <td valign="top">{{$register_form->addresses->village}}</td>
+                </tr>
+                <tr>
+                    <td valign="top"></td>
+                    <td valign="top">Kecamatan</td>
+                    <td valign="top">:</td>
+                    <td valign="top">{{$register_form->addresses->subdistrict}}</td>
+                </tr>
+                <tr>
+                    <td valign="top"></td>
+                    <td valign="top">Provinsi</td>
+                    <td valign="top">:</td>
+                    <td valign="top">{{$register_form->addresses->province}}</td>
+                </tr>
+                <tr>
+                    <td valign="top"></td>
+                    <td valign="top">Kodepos</td>
+                    <td valign="top">:</td>
+                    <td valign="top">{{$register_form->addresses->postal_code}}</td>
+                </tr>
+                <tr>
+                    <td valign="top"></td>
+                    <td valign="top">Koordinat Alamat</td>
+                    <td valign="top">:</td>
+                    <td valign="top">{{$register_form->addresses->address_coordinates}}</td>
+                </tr>
+                <tr>
+                    <td valign="top"></td>
+                    <td valign="top">Transportasi</td>
+                    <td valign="top">:</td>
+                    <td valign="top">{{$register_form->addresses->transportation}}</td>
+                </tr>
+                <tr>
+                    <td valign="top"></td>
+                    <td valign="top">Jarak dari rumah ke sekolah</td>
+                    <td valign="top">:</td>
+                    <td valign="top">{{$register_form->addresses->distance}}</td>
+                </tr>
+                <tr>
+                    <td valign="top"></td>
+                    <td valign="top">Waktu Tempuh</td>
+                    <td valign="top">:</td>
+                    <td valign="top">{{$register_form->addresses->traveling_time}}</td>
+                </tr>
+                <?php 
+                    $ordernumber = 2;
+                    $name_table = "";
+                ?>
+                @foreach ($register_form->parent_guardians as $value)
+                    <?php $ordernumber++?>
+                    <tr class="font-bold">
+                        <td><br/><br/></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="font-bold">
+                        <td valign="top">{{ $ordernumber }}.</td>
+                        <td valign="top">Data {{$value->data_type}}</td>
+                        <td valign="top"></td>
+                        <td valign="top"></td>
+                    </tr>
+                    @if($value->data_type != 'wali')
+                    <tr>
+                        <td valign="top"></td>
+                        <td valign="top">Status {{$value->data_type}}</td>
+                        <td valign="top">:</td>
+                        <td valign="top">{{$value->status}}</td>
+                    </tr>
+                    @endif
+                    <tr>
+                        <td valign="top"></td>
+                        <td valign="top">Nik</td>
+                        <td valign="top">:</td>
+                        <td valign="top">{{$value->nik}}</td>
+                    </tr>
+                    <tr>
+                        <td valign="top"></td>
+                        <td valign="top">Nama {{$value->data_type}}</td>
+                        <td valign="top">:</td>
+                        <td valign="top">{{$value->name}}</td>
+                    </tr>
+                    <tr>
+                        <td valign="top"></td>
+                        <td valign="top">Tempat/Tanggal Lahir</td>
+                        <td valign="top">:</td>
+                        <td valign="top">{{$value->place_of_birth}} / {{Carbon\Carbon::parse($value->date_of_birth)->translatedFormat('d F Y')}}</td>
+                    </tr>
+                    <tr>
+                        <td valign="top"></td>
+                        <td valign="top">Pendidikan</td>
+                        <td valign="top">:</td>
+                        <td valign="top">{{$value->education}}</td>
+                    </tr>
+                    <tr>
+                        <td valign="top"></td>
+                        <td valign="top">Pekerjaan</td>
+                        <td valign="top">:</td>
+                        <td valign="top">{{$value->work}}</td>
+                    </tr>
+                    <tr>
+                        <td valign="top"></td>
+                        <td valign="top">Penghasilan</td>
+                        <td valign="top">:</td>
+                        <td valign="top">{{$value->income}}</td>
+                    </tr>
+                    <tr>
+                        <td valign="top"></td>
+                        <td valign="top">No. HP</td>
+                        <td valign="top">:</td>
+                        <td valign="top">{{$value->phone}}</td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

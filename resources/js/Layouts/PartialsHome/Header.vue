@@ -41,6 +41,11 @@ const logout = () => {
                             </HomeNavLink>
                         </li>
                         <li>
+                            <HomeNavLink :href="route('userdata.create')" :active="route().current('userdata.create')">
+                                Formulir
+                            </HomeNavLink>
+                        </li>
+                        <li>
                             <HomeNavLink href="#" :active="route().current('login')">
                                 <form @submit.prevent="logout">
                                     <button type="submit">

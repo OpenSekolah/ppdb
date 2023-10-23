@@ -55,7 +55,7 @@ onMounted(() => {
                             </svg>
                         </div>
                     </a>
-                    <a href="/skala/customer/estimates" class="relative flex justify-between p-3 bg-white rounded shadow hover:bg-gray-50 xl:p-4 lg:col-span-2">
+                    <a href="#" class="relative flex justify-between p-3 bg-white rounded shadow hover:bg-gray-50 xl:p-4 lg:col-span-2">
                         <div>
                             <span class="text-xl font-semibold leading-tight text-black xl:text-3xl">
                                 <span style="font-family: sans-serif;">Aktif</span>

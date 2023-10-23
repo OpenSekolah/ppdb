@@ -18,6 +18,7 @@ import { alertMessage } from '@/Utils/global.js';
 const activeTab = ref('photo');
 const photoInput = ref(null);
 const kkInput = ref(null);
+const ijazahInput = ref(null);
 
 const props = defineProps({
 	register_model: {
@@ -42,6 +43,12 @@ const kk = useForm({
     file_photo: null,
 });
 
+const ijazah = useForm({
+    _method: 'POST',
+    type: 'ijazah',
+    file_photo: null,
+});
+
 const createModel = () => {
     if(activeTab.value == 'photo') {
         if(photoInput.value) {
@@ -60,6 +67,17 @@ const createModel = () => {
         }
 
         kk.post(props?.attr?.route_url, {
+            preserveScroll: true,
+            onSuccess: () => {
+                alertMessage();
+            },
+        });
+    } else if(activeTab.value == 'ijazah') {
+        if(ijazahInput.value) {
+            ijazah.file_photo = ijazahInput.value.files[0];
+        }
+
+        ijazah.post(props?.attr?.route_url, {
             preserveScroll: true,
             onSuccess: () => {
                 alertMessage();
@@ -148,11 +166,51 @@ onMounted(() => {
                             </template>
 
                             <template #actions>
-                                <ActionMessage :on="photo.recentlySuccessful" class="mr-3">
+                                <ActionMessage :on="kk.recentlySuccessful" class="mr-3">
                                     Saved.
                                 </ActionMessage>
 
-                                <Button :class="{ 'opacity-25': photo.processing }" :disabled="photo.processing">
+                                <Button :class="{ 'opacity-25': kk.processing }" :disabled="kk.processing">
+                                    Simpan
+                                </Button>
+                            </template>
+                        </FormSection>
+                    </tab>
+
+                    <tab name="ijazah" :title="attr?.title_ijazah">
+                        <FormSection full_layout="grid grid-cols-1 gap-6" @submitted="createModel">
+                            <template #title>
+                                {{ attr?.title_ijazah }}
+                            </template>
+
+                            <template #description>
+                                {{ attr?.title_ijazah_desc }} 
+                            </template>
+
+                            <template #form>
+                                <div class="col-span-6 sm:col-span-4">
+                                    <InputLabel for="year" value="Ijazah/SKL" />
+                                    <input 
+                                        ref="ijazahInput"
+                                        type="file" 
+                                        class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm disabled:bg-slate-50 disabled:text-slate-500 disabled:border-slate-200" 
+                                    />
+                                    <InputError class="mt-2" :message="ijazah.errors.file_photo" />
+
+                                    <img 
+                                        v-if="attr?.ijazah_model?.photoAt"
+                                        :src="attr?.ijazah_model?.photoAt" 
+                                        class="h-auto max-w-6xl rounded-lg mt-7 "
+                                    />
+                                </div>
+                            </template>
+
+                            <template #actions>
+                                <ActionMessage :on="ijazah.recentlySuccessful" class="mr-3">
+                                    Saved.
+                                </ActionMessage>
+
+                                <Button :class="{ 'opacity-25': ijazah.processing }" :disabled="ijazah.processing">
                                     Simpan
                                 </Button>
                             </template>

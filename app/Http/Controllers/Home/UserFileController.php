@@ -38,17 +38,20 @@ class UserFileController extends Controller
 
         $photo_model = UserFile::where('register_form_id', $register->id)->where('file_type', 'foto')->first();
         $kk_model = UserFile::where('register_form_id', $register->id)->where('file_type', 'kk')->first();
+        $ijazah_model = UserFile::where('register_form_id', $register->id)->where('file_type', 'ijazah')->first();
 
         return Inertia::render($this->path_render . 'Create', [
             'attr' => [
                 'photo_model' => $photo_model,
                 'kk_model' => $kk_model,
+                'ijazah_model' => $ijazah_model,
                 'route_url' => route("{$this->route_name}store"),
                 'title_photo' => 'Unggah Foto',
                 'title_photo_desc' => 'Unggah Foto Anda',
                 'title_kk' => 'Unggah Kartu Keluarga',
                 'title_kk_desc' => 'Unggah Kartu Keluarga Anda',
-                
+                'title_ijazah' => 'Unggah Ijazah/SKL',
+                'title_ijazah_desc' => 'Unggah Ijazah/SKL Anda',
             ]
         ]);
         
@@ -70,6 +73,8 @@ class UserFileController extends Controller
             $request->merge(['file_type' => 'foto']);
         } else if($data['type'] == 'kk') {
             $request->merge(['file_type' => 'kk']);
+        } else if($data['type'] == 'ijazah') {
+            $request->merge(['file_type' => 'ijazah']);
         }
 
         if(UserFile::createWebApp($request)) {

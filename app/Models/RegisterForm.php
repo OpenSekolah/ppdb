@@ -79,6 +79,10 @@ class RegisterForm extends Model
     public function parent_guardians() {
         return $this->hasMany(ParentGuardian::class, 'register_form_id', 'id')->orderBy('data_type', 'ASC');
     }
+
+    public function user_files() {
+        return $this->hasMany(UserFile::class, 'register_form_id', 'id')->orderBy('file_type', 'ASC');
+    }
     
 	public function getFormattedCreatedAtAttribute($value)
     {

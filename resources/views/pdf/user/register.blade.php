@@ -226,6 +226,23 @@
                         <td valign="top">{{$value->phone}}</td>
                     </tr>
                 @endforeach
+
+                @foreach ($register_form->user_files as $value)
+                    <?php $ordernumber++?>
+                    <tr class="font-bold">
+                        <td><br/><br/></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="font-bold">
+                        <td valign="top">{{ $ordernumber }}.</td>
+                        <td valign="top">Data {{$value->file_type}}</td>
+                        <td valign="top" colspan="2">
+                            <img src="{{asset('storage/userfile/'.$value->file_type.'/'.$value->file)}}" style="max-width: 100% !important;"/>
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

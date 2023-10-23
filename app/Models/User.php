@@ -73,6 +73,7 @@ class User extends Authenticatable
             'admission',
             'addresses',
             'parent_guardians',
+            'user_files',
         ])->where('user_id', $this->id)->first();
 
         $data = [

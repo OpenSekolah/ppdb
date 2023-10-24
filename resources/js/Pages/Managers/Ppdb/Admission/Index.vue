@@ -57,7 +57,7 @@ const props = defineProps({
                                 <th scope="row" class="px-6 py-4 border text-center"><IsActive :is_active="item?.is_active" /></th>
                                 <td class="px-6 py-4 text-center border whitespace-nowrap">
                                     <div class="flex justify-center items-center">                                        
-                                        <Link :href="route(attr?.route_name + 'edit', item?.id)" class="flex items-center mr-3" href="javascript:;">
+                                        <Link :href="route(attr?.route_name + 'edit', item?.id)" class="flex items-center mr-3">
                                             Edit 
                                         </Link>
                                     </div>

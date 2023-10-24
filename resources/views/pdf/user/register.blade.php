@@ -34,6 +34,9 @@
 </style>
 <body>
     <div>
+        <div style="width: 100% !important; height:200px !important;">
+            <img src="{{asset('images/header.png')}}" style="width: 100%; height: 100%"/>
+        </div>
         <h3 class="text-center">Formulir Pendaftaran Peserta Didik Baru Tahun {{$register_form->admission->year}} Gelombang {{$register_form->admission->stage}} </h3>
         <table class="tablex w-100 mt-10">
             <tbody>

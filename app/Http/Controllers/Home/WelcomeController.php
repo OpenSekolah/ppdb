@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\SkillCompetence;
 use App\Models\Admission;
 use Inertia\Inertia;
+use Carbon\Carbon;
 
 class WelcomeController extends Controller
 {
@@ -21,13 +22,16 @@ class WelcomeController extends Controller
     public function __invoke(Request $request)
     {
         $competence = SkillCompetence::paginateData('all');
-        $adminssion = Admission::where('is_active', true)->get();
+        $adminssion = Admission::where('is_active', true)->first();
         $register = false;
         $register_data = [];
         if($adminssion) {
-            if(count($adminssion) == 1) {
+            $start_date = Carbon::parse($adminssion->start_date);
+            $end_date = Carbon::parse($adminssion->end_date);
+            $now_date = Carbon::now();
+            if($now_date->gte($start_date) && $now_date->lte($end_date)) {
                 $register = true;
-                $register_data = $adminssion[0];
+                $register_data = $adminssion;
             }
         }
         

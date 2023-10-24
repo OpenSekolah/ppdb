@@ -54,6 +54,7 @@ class RegisterForm extends Model
         'formattedUpdatedAt',
         'dateOfBirthAt',
         'statusAt',
+        'docStatusAt',
     ];
     
     public function admission() {
@@ -99,6 +100,41 @@ class RegisterForm extends Model
         return Carbon::parse($this->date_of_birth)->translatedFormat('d M Y');
     }
 
+    public function getDocStatusAtAttribute($value)
+    {
+        $addresses_count = $this->addresses()->count();
+        $father = 0;
+        $mother = 0;
+        $guardian = 0;
+        $files = 0;
+        if($parent_guardians_count = $this->parent_guardians()->get()) {
+            foreach($parent_guardians_count as $value) {
+                if($value->data_type == 'ayah') {
+                    $father += 1;
+                } else if($value->data_type == 'ibu') {
+                    $mother += 1;
+                } else if($value->data_type == 'wali') {
+                    $guardian += 1;
+                }
+            }
+        }
+
+        if($user_files_count = $this->user_files()->get()) {
+            foreach($user_files_count as $value) {
+                if($value->file_type != 'kip') {
+                    $files += 1;
+                }
+            }
+        }
+
+        $status = "Belum Lengkap";
+        if($father && $mother && $addresses_count && $files >= 4) {
+            $status = "Lengkap";
+        }
+
+        return $status;
+    }
+
     public function getStatusAtAttribute($value)
     {
         $status = "";
@@ -118,11 +154,17 @@ class RegisterForm extends Model
         $query->where('is_active', $search);
     }
 
+	public function scopeWhereAdmissionId($query, $search)
+    {
+        $query->where('admission_id', $search);
+    }
+
     public function scopeWhereSearch($query, $search)
     {
         foreach (explode(' ', $search) as $term) {
             $query->where('name', 'LIKE', '%'.$term.'%')
-                ->orWhere('nisn', 'LIKE', '%'.$term.'%');
+                ->orWhere('nisn', 'LIKE', '%'.$term.'%')
+                ->orWhere('register_number', 'LIKE', '%'.$term.'%');
         }
     }
     
@@ -131,6 +173,10 @@ class RegisterForm extends Model
         $filters = collect($filters);
         if ($filters->get('search')) {
             $query->whereSearch($filters->get('search'));
+        }
+
+        if ($filters->get('admid')) {
+            $query->whereAdmissionId($filters->get('admid'));
         }
     }
 

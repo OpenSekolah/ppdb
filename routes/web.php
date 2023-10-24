@@ -45,7 +45,7 @@ Route::middleware([
 ])->group(function () {
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
     Route::get('/register/pdf/{user}', RegisterPdfController::class)->name('register.pdf');
-
+    
     Route::get('/userdata', [UserDataController::class, 'create'])->name('userdata.create');
     Route::post('/userdata', [UserDataController::class, 'store'])->name('userdata.store');
 

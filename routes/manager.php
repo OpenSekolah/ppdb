@@ -7,6 +7,7 @@ use App\Http\Controllers\Managers\{
     Home\DashboardController,
     Ppdb\AdmissionController,
     Ppdb\PpdbDataController,
+    Ppdb\PpdbDatapdfController,
 };
 
 /*
@@ -56,5 +57,7 @@ Route::middleware([
             'as' => 'manager.ppdb',
             'only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']
         ]);
+
+        Route::get('/register/pdf/{user}', PpdbDatapdfController::class)->name('manager.ppdb.register.pdf');
     });
 });

@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Lang;
 use Illuminate\Http\Request;
 use App\Models\RegisterForm;
 use App\Models\SkillCompetence;
+use App\Models\Admission;
 use App\Http\Requests\Managers\Ppdb\PpdbDataRequest;
 use Inertia\Inertia;
 
@@ -18,6 +19,7 @@ class PpdbDataController extends Controller
 	private $title_create;
 	private $title_edit;
 	private $breadcrumb_index;
+	private $breadcrumb_show;
 	private $breadcrumb_create;
 	private $breadcrumb_edit;
 	private $success_add;
@@ -80,8 +82,10 @@ class PpdbDataController extends Controller
         $limit = abs((int) $request->query('per_page', 50));
         $page = abs((int) $request->query('page', 1));
         $key = $request->query('key', 'religion');
-        $queries = ['search', 'page'];
+        $queries = ['search', 'page', 'admid'];
 		
+        $admissions = Admission::selectRaw("id, CONCAT(year, ' gelombang ', stage) as name")->orderBy('year', 'DESC')->get();
+
         $models = RegisterForm::with(['user', 'admission'])
                 ->applyFilters($request->only($queries))
                 ->paginateData($limit)
@@ -94,10 +98,12 @@ class PpdbDataController extends Controller
                 'route_name' => $this->route_name,
                 'title' => $this->title_index,
                 'search' => $request->query('search', null),
+                'admid' => $request->query('admid', null),
                 'breadcrumb' => $this->breadcrumb_index,
                 'filters' => $request->all($queries),
                 'start' => $limit * ($page - 1),
                 'key_search' => $key,
+                'admissions' => generalSelectFormat($admissions),
             ]
         ]);
     }
@@ -131,7 +137,24 @@ class PpdbDataController extends Controller
      */
     public function show(RegisterForm $ppdbdata)
     {
-        //
+        $this->breadcrumb_show = [
+			[
+				'title' => $this->title_index,
+				'url' => route($this->route_name . 'index'),
+				'active' => false
+			],
+			[
+				'title' => $ppdbdata->register_number,
+				'url' => null,
+				'active' => true
+			]
+		];
+        return Inertia::render($this->path_render . 'Show', [
+            'attr' => [
+                'breadcrumb' => $this->breadcrumb_show,
+                'register_pdf_url' => route('manager.ppdb.register.pdf', $ppdbdata->user_id),
+            ]
+        ]);
     }
 
     /**

@@ -8,12 +8,11 @@ class LogoutReseponse implements LogoutReseponseContract{
 
     public function toResponse($request)
     {
-        if(request()->is('manager/*')){
+        if(request()->is('manager/*') || request()->is('manager')){
             return Inertia::location(route('manager.login'));
         } else {
             return Inertia::location(route('login'));
-        }
-		  
+        }  
     }
 
 }

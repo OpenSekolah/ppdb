@@ -14,16 +14,11 @@ class LoginResponse implements LoginResponseContract
      */
     public function toResponse($request)
     {
-        if(request()->is('manager/*')){
+        if(request()->is('manager/*') || request()->is('manager')){
             return Inertia::location(route('manager.dashboard'));
         } else {
             return Inertia::location(route('dashboard'));
-        }	
-
-        // if (request()->is('manager/*')) {
-        //     return redirect()->intended(route('manager.login'));
-        // }
-        // return redirect()->intended(Fortify::redirects('login'));
+        }
     }
 
 }

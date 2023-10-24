@@ -44,10 +44,6 @@ class UserDataRequest extends FormRequest
                     'required',
                     'date',
                 ],
-                'address' => [
-                    'required',
-                    'max:65535',
-                ],
                 'from_school' => [
                     'required',
                     'max:255',

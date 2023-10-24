@@ -260,16 +260,6 @@ onMounted(() => {
                                         </div>
                                     </div>
                                 </div>
-                                
-                                <div class="col-span-6 sm:col-span-4">
-                                    <InputLabel for="address" value="Alamat" />
-                                    <TextArea
-                                        id="address"
-                                        v-model="register.address"
-                                        class="mt-1 block w-full"
-                                    />
-                                    <InputError class="mt-2" :message="register.errors.address" />
-                                </div>
 
                                 <div class="col-span-6 sm:col-span-4">
                                     <InputLabel for="from_school" value="Asal Sekolah" />

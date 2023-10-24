@@ -37,5 +37,6 @@ Sistem PPDB ini dikelola dengan merujuk pada lisensi **GNU General Public Licens
 ####node Version
 #node -> stable (-> v18.14.0)
 
-# Gambar
+# Image
+![Alt text](https://github.com/OpenSekolah/ppdb/blob/main/public/images/beranda.png)
 ![Alt text](https://github.com/OpenSekolah/ppdb/blob/main/public/images/formulir.png)

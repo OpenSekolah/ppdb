@@ -2,6 +2,7 @@
 import { onMounted, ref } from 'vue';
 
 import HomeLayout from '@/Layouts/HomeLayout.vue';
+import RegisterStatusDashboard from '@/Components/RegisterStatusDashboard.vue';
 
 const iframe_load = ref(false);
 
@@ -41,7 +42,7 @@ onMounted(() => {
                             </svg>
                         </div>
                     </a>
-                    <a href="#" class="relative flex justify-between p-3 bg-white rounded shadow hover:bg-gray-50 xl:p-4 lg:col-span-2">
+                    <a href="#" class="relative flex justify-between p-3 bg-white rounded shadow hover:bg-gray-50 xl:p-4 lg:col-span-2 lg:!col-span-3">
                         <div>
                             <span class="text-xl font-semibold leading-tight text-black xl:text-3xl">
                                 <span style="font-family: sans-serif;">Lengkap</span>
@@ -55,10 +56,10 @@ onMounted(() => {
                             </svg>
                         </div>
                     </a>
-                    <a href="#" class="relative flex justify-between p-3 bg-white rounded shadow hover:bg-gray-50 xl:p-4 lg:col-span-2">
+                    <a href="#" class="relative flex justify-between p-3 bg-white rounded shadow hover:bg-gray-50 xl:p-4 lg:col-span-2 lg:!col-span-3">
                         <div>
                             <span class="text-xl font-semibold leading-tight text-black xl:text-3xl">
-                                <span style="font-family: sans-serif;">Aktif</span>
+                                <RegisterStatusDashboard :status="attr?.user?.register_form?.status"/>
                             </span>
                             <span class="block mt-1 text-sm leading-tight text-gray-500 xl:text-lg">Status Pendaftaran</span>
                         </div>

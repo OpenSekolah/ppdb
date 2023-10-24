@@ -50,37 +50,37 @@
                     <td valign="top"></td>
                     <td valign="top">Nama Lengkap</td>
                     <td valign="top">:</td>
-                    <td valign="top">{{$register_form->name}}</td>
+                    <td valign="top">{{$register_form->name ?? ""}}</td>
                 </tr>
                 <tr>
                     <td valign="top"></td>
                     <td valign="top">NISN</td>
                     <td valign="top">:</td>
-                    <td valign="top">{{$register_form->nisn}}</td>
+                    <td valign="top">{{$register_form->nisn ?? ""}}</td>
                 </tr>
                 <tr>
                     <td valign="top"></td>
                     <td valign="top">Tempat/Tanggal Lahir</td>
                     <td valign="top">:</td>
-                    <td valign="top">{{$register_form->place_of_birth}} / {{$register_form->dateOfBirthAt}}</td>
+                    <td valign="top">{{$register_form->place_of_birth ?? ""}} / {{$register_form->dateOfBirthAt ?? ""}}</td>
                 </tr>
                 <tr>
                     <td valign="top"></td>
                     <td valign="top">Asal Sekolah</td>
                     <td valign="top">:</td>
-                    <td valign="top">{{$register_form->from_school}}</td>
+                    <td valign="top">{{$register_form->from_school ?? ""}}</td>
                 </tr>
                 <tr>
                     <td valign="top"></td>
                     <td valign="top">Pilihan Jurusan 1</td>
                     <td valign="top">:</td>
-                    <td valign="top">{{$register_form->competencefirst->name}}</td>
+                    <td valign="top">{{$register_form->competencefirst->name ?? ""}}</td>
                 </tr>
                 <tr>
                     <td valign="top"></td>
                     <td valign="top">Pilihan Jurusan 2</td>
                     <td valign="top">:</td>
-                    <td valign="top">{{$register_form->competencesecond->name}}</td>
+                    <td valign="top">{{$register_form->competencesecond->name ?? ""}}</td>
                 </tr>
                 <tr class="font-bold">
                     <td><br/><br/></td>
@@ -98,67 +98,67 @@
                     <td valign="top"></td>
                     <td valign="top">Status Tempat Tinggal</td>
                     <td valign="top">:</td>
-                    <td valign="top">{{$register_form->addresses->residence}}</td>
+                    <td valign="top">{{$register_form->addresses->residence ?? ""}}</td>
                 </tr>
                 <tr>
                     <td valign="top"></td>
                     <td valign="top">Alamat</td>
                     <td valign="top">:</td>
-                    <td valign="top">{{$register_form->addresses->address}}</td>
+                    <td valign="top">{{$register_form->addresses->address ?? ""}}</td>
                 </tr>
                 <tr>
                     <td valign="top"></td>
                     <td valign="top">RT/RW</td>
                     <td valign="top">:</td>
-                    <td valign="top">{{$register_form->addresses->rt}}/{{$register_form->addresses->rw}}</td>
+                    <td valign="top">{{$register_form->addresses->rt ?? "0"}}/{{$register_form->addresses->rw ?? "0"}}</td>
                 </tr>
                 <tr>
                     <td valign="top"></td>
                     <td valign="top">Desa</td>
                     <td valign="top">:</td>
-                    <td valign="top">{{$register_form->addresses->village}}</td>
+                    <td valign="top">{{$register_form->addresses->village ?? ""}}</td>
                 </tr>
                 <tr>
                     <td valign="top"></td>
                     <td valign="top">Kecamatan</td>
                     <td valign="top">:</td>
-                    <td valign="top">{{$register_form->addresses->subdistrict}}</td>
+                    <td valign="top">{{$register_form->addresses->subdistrict ?? ""}}</td>
                 </tr>
                 <tr>
                     <td valign="top"></td>
                     <td valign="top">Provinsi</td>
                     <td valign="top">:</td>
-                    <td valign="top">{{$register_form->addresses->province}}</td>
+                    <td valign="top">{{$register_form->addresses->province ?? ""}}</td>
                 </tr>
                 <tr>
                     <td valign="top"></td>
                     <td valign="top">Kodepos</td>
                     <td valign="top">:</td>
-                    <td valign="top">{{$register_form->addresses->postal_code}}</td>
+                    <td valign="top">{{$register_form->addresses->postal_code ?? ""}}</td>
                 </tr>
                 <tr>
                     <td valign="top"></td>
                     <td valign="top">Koordinat Alamat</td>
                     <td valign="top">:</td>
-                    <td valign="top">{{$register_form->addresses->address_coordinates}}</td>
+                    <td valign="top">{{$register_form->addresses->address_coordinates ?? ""}}</td>
                 </tr>
                 <tr>
                     <td valign="top"></td>
                     <td valign="top">Transportasi</td>
                     <td valign="top">:</td>
-                    <td valign="top">{{$register_form->addresses->transportation}}</td>
+                    <td valign="top">{{$register_form->addresses->transportation ?? ""}}</td>
                 </tr>
                 <tr>
                     <td valign="top"></td>
                     <td valign="top">Jarak dari rumah ke sekolah</td>
                     <td valign="top">:</td>
-                    <td valign="top">{{$register_form->addresses->distance}}</td>
+                    <td valign="top">{{$register_form->addresses->distance ?? ""}}</td>
                 </tr>
                 <tr>
                     <td valign="top"></td>
                     <td valign="top">Waktu Tempuh</td>
                     <td valign="top">:</td>
-                    <td valign="top">{{$register_form->addresses->traveling_time}}</td>
+                    <td valign="top">{{$register_form->addresses->traveling_time ?? ""}}</td>
                 </tr>
                 <?php 
                     $ordernumber = 2;

@@ -301,7 +301,7 @@ onMounted(() => {
 
                             <template #form>
                                 <div class="col-span-6 sm:col-span-4">
-                                    <InputLabel for="year" value="Akta Kelahiran" />
+                                    <InputLabel for="year" value="KIP" />
                                     <input 
                                         ref="kipInput"
                                         type="file" 

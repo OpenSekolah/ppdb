@@ -41,6 +41,10 @@ Sistem PPDB ini dikelola dengan merujuk pada lisensi **GNU General Public Licens
 ![Alt text](https://github.com/OpenSekolah/ppdb/blob/main/public/images/beranda.png)
 ![Alt text](https://github.com/OpenSekolah/ppdb/blob/main/public/images/formulir.png)
 
+# Untuk Menggunakan Aplikasi PPDB Dibawah Harap Hubungi admin OpenSekolah di :
+    - joglostudio@gmail.com
+    - petdooz@gmail.com
+    
 # PRIVATE REPO WEB
 ![Alt text](https://github.com/OpenSekolah/ppdb/blob/main/public/pre/web/1.png)
 ![Alt text](https://github.com/OpenSekolah/ppdb/blob/main/public/pre/web/2.png)
